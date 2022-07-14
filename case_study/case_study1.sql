@@ -147,21 +147,25 @@ INSERT INTO
 			('8', 'Nguyễn Hà Đông', '1989-09-03', '234414123', '9000000', '0642123111', 'donghanguyen@gmail.com', '111 Hùng Vương, Hà Nội', '2', '4', '4'),
 			('9', 'Tòng Hoang', '1982-09-03', '256781231', '6000000', '0245144444', 'hoangtong@gmail.com', '213 Hàm Nghi, Đà Nẵng', '2', '4', '4'),
 			('10', 'Nguyễn Công Đạo', '1994-01-08', '755434343', '8000000', '0988767111', 'nguyencongdao12@gmail.com', '6 Hoà Khánh, Đồng Nai', '2', '3', '2');
+
 INSERT INTO furuma_managerment.loai_khach (ma_loai_khach, ten_loai_khach)
 	 VALUES ('1', 'Diamond'),
 			('2', 'Platinium'),
 			('3', 'Gold'),
 			('4', 'Silver'),
 			('5', 'Member');
+            
 INSERT INTO furuma_managerment.kieu_thue (ma_kieu_thue, ten_kieu_thue)
 	VALUES 	('1', 'year'),
 			('2', 'month'),
 			('3', 'day'),
 			('4', 'hour');
+            
 INSERT INTO furuma_managerment.loai_dich_vu (ma_loai_dich_vu, ten_loai_dich_vu) 
 	VALUES 	('1', 'Villa'),
 			('2', 'House'),
 			('3', 'Room');
+            
 INSERT INTO furuma_managerment.dich_vu_di_kem (ma_dich_vu_di_kem, ten_dich_vu_di_kem, gia, don_vi, trang_thai) 
 	VALUES 	('1', 'Karaoke', '10000', 'giờ', 'tiện nghi, hiện tại'),	
 			('2', 'Thuê xe máy', '10000', 'chiếc', 'hỏng 1 xe'),
@@ -169,6 +173,7 @@ INSERT INTO furuma_managerment.dich_vu_di_kem (ma_dich_vu_di_kem, ten_dich_vu_di
 			('4', 'Buffet buổi sáng', '15000', 'suất', 'đầy đủ đồ ăn, tráng miệng'),
 			('5', 'Buffet buổi trưa', '90000', 'suất', 'đầy đủ đồ ăn, tráng miệng'),
 			('6', 'Buffet buổi tối', '16000', 'suất', 'đầy đủ đồ ăn, tráng miệng');
+            
  INSERT INTO furuma_managerment.khach_hang(ma_khach_hang, ma_loai_khach, ho_ten, ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, email, dia_chi)
 VALUES ('1', '5', 'Nguyễn Thị Hào', '1970-11-07', 0, '643431213', '0945423362', 'thihao07@gmail.com', '23 Nguyễn Hoàng, Đà Nẵng'),
   ('2', '3', 'Phạm Xuân Diệu', '1992-08-08', 1, '865342123', '0954333333', 'xuandieu92@gmail.com', 'K77/22 Thái Phiên, Quảng Trị'),
@@ -180,6 +185,37 @@ VALUES ('1', '5', 'Nguyễn Thị Hào', '1970-11-07', 0, '643431213', '09454233
   ('8', '3', 'Nguyễn Thị Hào', '1999-04-08', 0, '965656433', '0763212345', 'haohao99@gmail.com', '55 Nguyễn Văn Linh, Kon Tum'),
   ('9', '1', 'Trần Đại Danh', '1994-07-01', 1, '432341235', '0643343433', 'danhhai99@gmail.com', '24 Lý Thường Kiệt, Quảng Ngãi'),
   ('10', '2', 'Nguyễn Tâm Đắc', '1989-07-01', 1, '344343432', '0987654321', 'dactam@gmail.com', '22 Ngô Quyền, Đà Nẵng');
+  
+INSERT INTO furuma_managerment.dich_vu (ma_dich_vu, ten_dich_vu, dien_tich, chi_phi_thue, so_nguoi_toi_da, ma_kieu_thue, ma_loai_dich_vu, tieu_chuan_phong, mo_ta_ten_tien_nghi_khac, dien_tich_ho_boi, so_tang, dich_vu_mien_phi_di_kem) 
+VALUES	('1', 'Villa Beach Front', '25000', '1000000', '10', '3', '1', 'vip', 'Có hồ bơi', '500', '4', null),
+		('2', 'House Princess 01', '14000', '5000000', '7', '2', '2', 'vip', 'Có thêm bếp nướng', null, '3', null),
+		('3', 'Room Twin 01', '5000', '1000000', '2', '4', '3', 'normal', 'Có tivi', null, null, '1 Xe máy, 1 Xe đạp'),
+		('4', 'Villa No Beach Front', '22000', '9000000', '8', '3', '1', 'normal', 'Có hồ bơi', '300', '3', 'null'),
+		('5', 'House Princess 02', '10000', '4000000', '5', '3', '2', 'normal', 'Có thêm bếp nướng', null, '2', null),
+		('6', 'Room Twin 02', '3000', '900000', '2', '4', '3', 'normal', 'Có tivi', null, null, '1 Xe máy');
+        
+INSERT INTO furuma_managerment.hop_dong (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_coc, ma_nhan_vien, ma_khach_hang, ma_dich_vu) 
+VALUES 	('1', '2020-12-08', '2020-12-08', '0', '3', '1', '3'),
+		('3', '2021-03-15', '2021-03-17', '50000', '3', '4', '2'),
+		('4', '2021-01-14', '2021-01-18', '100000', '7', '5', '5'),
+		('5', '2021-07-1ma_hop_dong_chi_tiethop_dong_chi_tiet4', '2021-07-15', '0', '7', '2', '6'),
+		('6', '2021-06-01', '2021-06-03', '0', '7', '7', '6'),
+		('7', '2021-09-02', '2021-09-05', '100000', '7', '4', '4'),
+		('8', '2021-06-17', '2021-06-18', '150000', '3', '4', '1'),
+		('9', '2020-11-19', '2020-11-19', '0', '3', '4', '3'),
+		('10', '2021-04-12', '2021-04-14', '0', '10', '3', '5'),
+		('11', '2021-04-25', '2021-04-25', '0', '2', '2', '1'),
+		('12', '2021-05-25', '2021-05-27', '0', '7', '10', '1');
+
+INSERT INTO furuma_managerment.hop_dong_chi_tiet (ma_hop_dong_chi_tiet, ma_hop_dong, ma_dich_vu_di_kem, so_luong) 
+VALUES 	('1', '2', '4',5),
+	('2', '2', '5', '8'),
+	('3', '2', '6', ''),
+	('4', '3', '1', 1),
+	('5', '3', '2', 1),
+	('6', '1', '3', 1),
+	('8', '12', '2', 2);
+	
 
 
 
