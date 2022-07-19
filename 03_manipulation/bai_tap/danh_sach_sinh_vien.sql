@@ -72,84 +72,58 @@ INSERT INTO mark (sub_id, student_id, mark, exam_times)
 		   (1, 2, 10, 2),
 		   (2, 1, 12, 1);
            
-SELECT 
-    *
-FROM
-    student
-WHERE
-    student_name REGEXP '^[h]';
+SELECT *
+FROM student
+WHERE student_name REGEXP '^[h]';
+
+SELECT *
+FROM student s
+        JOIN class c ON c.class_id = s.class_id;
+
+SELECT *
+	FROM student s
+	JOIN class c ON c.class_id = s.class_id
+	WHERE c.class_name = 'A1';
+
+SELECT *
+		FROM student s
+        JOIN`subject` x ON s.`status` = x.`status`
+		WHERE x.sub_name = 'CF';
 
 SELECT 
-    *
-FROM
-    student s
-        JOIN
-    class c ON c.class_id = s.class_id;
-
-SELECT 
-    *
-FROM
-    student s
-        JOIN
-    class c ON c.class_id = s.class_id
-WHERE
-    c.class_name = 'A1';
-
-SELECT 
-    *
-FROM
-    student s
-        JOIN
-    `subject` x ON s.`status` = x.`status`
-WHERE
-    x.sub_name = 'CF';
-
-SELECT 
-    s.student_id, s.student_name, x.sub_name, m.mark
-FROM
-    student s
-        JOIN
-    mark m ON s.student_id = m.student_id
-        JOIN
-    `subject` x ON m.sub_id = x.sub_id;
+    s.student_id,
+    s.student_name,
+    x.sub_name,
+    m.mark
+FROM student s
+	JOIN mark m ON s.student_id = m.student_id
+	JOIN`subject` x ON m.sub_id = x.sub_id;
 
 -- Hiển thị các thông tin lớp học có thời gian bắt đầu vào tháng 12.
-SELECT 
-    *
-FROM
-    class
-WHERE
-    MONTH(start_day) >= 12;
+SELECT *
+FROM class
+WHERE MONTH(start_day) >= 12;
 
 -- Hiển thị tất cả các thông tin môn học có credit trong khoảng từ 3-5.
-SELECT 
-    *
-FROM
-    `subject` sub
-WHERE
-    sub.credit BETWEEN 3 AND 5;
+SELECT *
+FROM `subject` sub
+WHERE sub.credit BETWEEN 3 AND 5;
 
  -- Thay đổi mã lớp(ClassID) của sinh viên có tên ‘Hung’ là 2.
-set sql_safe_updates = 0 ;
+SET sql_safe_updates = 0 ;
 
 UPDATE student 
-SET 
-    class_id = 2
-WHERE
-    student_name = 'Hung';
+	SET class_id = 2
+	WHERE student_name = 'Hung';
 
-set sql_safe_updates = 1;
+SET sql_safe_updates = 1;
 
-SELECT 
-    student_name, sub_name, mark
-FROM
-    student s
-        JOIN
-    `subject` sub ON s.`status` = sub.`status`
-        LEFT JOIN
-    mark m ON sub.sub_id = mark_id
-WHERE
-    m.mark
+SELECT 	student_name,
+		sub_name, mark
+FROM student s
+        JOIN`subject` sub ON s.`status` = sub.`status`
+        LEFT JOIN mark m ON sub.sub_id = mark_id
+WHERE m.mark
 ORDER BY m.mark ASC;
 
 

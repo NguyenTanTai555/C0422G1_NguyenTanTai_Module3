@@ -14,7 +14,7 @@ CREATE TABLE `order` (
     o_id INT PRIMARY KEY,
     c_id INT,
     FOREIGN KEY (c_id)
-        REFERENCES customer (c_id),
+	REFERENCES customer (c_id),
     o_date DATETIME,
     o_total_price INT
 );
@@ -63,31 +63,37 @@ insert into order_detail(o_id,p_id,od_qty)
         
 -- hiển thị các thông tin o_id,o_date,o_price
 SELECT 
-    o_id, o_date, o_total_price
-FROM
-    `order`;
+    o_id,
+    o_date,
+    o_total_price
+FROM `order`;
 
 -- hiển thị danh sách khách đã mua hàng , và các sản phẩm đã được mua bởi khách hàng 
-SELECT c.c_name , o.o_id , od.od_qty,p.p_name
+SELECT 	c.c_name ,
+		o.o_id ,
+		od.od_qty,
+		p.p_name
 FROM customer c
-join `order` o 
-on c.c_id = o.c_id 
-join order_detail od 
-on o.o_id = od.o_id 
-join product p on od.p_id = p.p_id ; 
+	JOIN `order` o 
+	ON c.c_id = o.c_id 
+	JOIN order_detail od 
+	ON o.o_id = od.o_id 
+	JOIN product p on od.p_id = p.p_id ; 
 
 -- Hiển thị khách hàng không mua hàng .
-SELECT c.c_id ,c.c_name
+SELECT 	c.c_id ,
+		c.c_name
 FROM customer c 
-left join `order`o 
-on c.c_id = o.c_id 
-where o.c_id is null ;
+	LEFT JOIN `order`o 
+	ON c.c_id = o.c_id 
+WHERE o.c_id is null ;
 
 -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn  
-SELECT 	o.o_id , o.o_date , 
+SELECT 	o.o_id ,
+		o.o_date , 
 		sum(od.od_qty*p.p_price) as total_price
 FROM `order`o
-join order_detail od on o.o_id = od.o_id 
-join product p on od.p_id = p.p_id 
-group by o.o_id;
+	JOIN order_detail od on o.o_id = od.o_id 
+	JOIN product p on od.p_id = p.p_id 
+GROUP BY o.o_id;
 
