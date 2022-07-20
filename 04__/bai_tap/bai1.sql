@@ -6,62 +6,58 @@ USE managerment_sinh_vien2;
 
 CREATE TABLE class
 (
-	class_id int primary key ,
-    class_name varchar(40) not null ,
-    start_day date ,
-    `status` boolean 
+	class_id INT PRIMARY KEY ,
+    class_name VARCHAR(40) NOT NULL ,
+    start_day DATE ,
+    `status` BOOLEAN 
 );
 
 CREATE TABLE student 
 (
-	student_id int auto_increment primary key ,
-	student_name varchar(40) not null ,
-	address varchar(40) ,
-    phone varchar (15)  ,
-    `status` boolean ,
-    class_id int ,
-    foreign key (class_id) references class(class_id)
+	student_id INT AUTO_INCREMENT PRIMARY KEY ,
+	student_name VARCHAR(40) NOT NULL ,
+	address VARCHAR(40) ,
+    phone VARCHAR (15)  ,
+    `status` BOOLEAN ,
+    class_id INT ,
+    FOREIGN KEY (class_id) REFERENCES class(class_id)
 );
 
 CREATE TABLE `subject` 
 (
-	sub_id int primary key ,
-	sub_name varchar(40) ,
-    credit int ,
-    `status` boolean 
+	sub_id INT PRIMARY KEY ,
+	sub_name VARCHAR(40) ,
+    credit INT ,
+    `status` BOOLEAN 
     
 );
 
 CREATE TABLE mark 
 (
-	mark_id int auto_increment primary key ,
-    sub_id int  ,
-    foreign key (sub_id) references `subject`(sub_id),
-    student_id int ,
-    foreign key (student_id) references student(student_id),
-    mark int ,
-    exam_times int 
+	mark_id INT AUTO_INCREMENT PRIMARY KEY ,
+    sub_id INT  ,
+    FOREIGN KEY (sub_id) REFERENCES `subject`(sub_id),
+    student_id INT ,
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    mark INT ,
+    exam_times INT 
 );
 
 INSERT INTO class 
-	VALUES (1,'A1','2008-12-20',1) ;
-
-INSERT INTO class
-	VALUES (2,'A2' ,'2008-12-22',1);
-    
-INSERT INTO	class
-	VALUES (3,'B3',current_date(),0);
+	VALUES 	(1,'A1','2008-12-20',1),
+			(2,'A2' ,'2008-12-22',1),
+			(3,'B3',CURRENT_DATE(),0);
     
 INSERT INTO student (student_name ,address,phone,`status`,class_id)
-	VALUES ('Hung' ,'Ha Noi ','0912113113',1,1) ;
+	VALUES 	('Hung' ,'Ha Noi ','0912113113',1,1) ,
+			('Manh', 'HCM', '0123123123', 0, 2);
 
 INSERT INTO student (student_name, address, `status`, class_id)
 	VALUES ('Hoa', 'Hai phong', 1, 1);
 
-INSERT INTO student (student_name, address, phone, `status`, class_id)
-	VALUES ('Manh', 'HCM', '0123123123', 0, 2);
 
-INSERT INTO `Subject`
+
+INSERT INTO `subject`
 	VALUES (1, 'CF', 5, 1),
 		   (2, 'C', 6, 1),
 		   (3, 'HDJ', 5, 1),
@@ -74,10 +70,10 @@ INSERT INTO mark (sub_id, student_id, mark, exam_times)
            
 -- hiển thị credit lớn nhất trong bảng subject
 SELECT *
-FROM subject
+FROM `subject`
 WHERE
-    Credit = (SELECT 
-            MAX(Credit)
+    credit = (SELECT 
+            MAX(credit)
         FROM
             subject);
 -- Hiển thị các thông tin môn học có điểm thi lớn nhất.
@@ -85,17 +81,17 @@ SELECT 	s.sub_id ,
 		s.sub_name,
 		m.mark
 FROM `subject` s
-	JOIN mark m
-	ON s.sub_id = m.sub_id
-where m.mark = (select max(m.mark) from mark m);
+JOIN mark m
+ON s.sub_id = m.sub_id
+WHERE m.mark = (SELECT max(m.mark) FROM mark m);
 
--- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
+-- HiỂn thỊ CÁC thông tIn sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
 SELECT 	s.student_id,
 		s.student_name,
         s.address,
-        avg(m.mark) as diem_trung_binh
-FROM student s
+        AVG(m.mark) AS diem_trung_binh
+FROM studeNt s
 	JOIN mark m
 	ON s.student_id = m.student_id
-group by s.student_name
-order by m.mark desc;
+GROUP BY s.student_id
+ORDER BY diem_trung_binh DESC;
