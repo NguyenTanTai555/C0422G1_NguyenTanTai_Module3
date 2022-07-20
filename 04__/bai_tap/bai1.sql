@@ -72,18 +72,18 @@ INSERT INTO mark (sub_id, student_id, mark, exam_times)
 SELECT *
 FROM `subject`
 WHERE
-    credit = (SELECT 
-            MAX(credit)
-        FROM
-            subject);
+    credit = (SELECT MAX(credit)
+				FROM
+					`subject`);
 -- Hiển thị các thông tin môn học có điểm thi lớn nhất.
 SELECT 	s.sub_id ,
 		s.sub_name,
 		m.mark
 FROM `subject` s
-JOIN mark m
-ON s.sub_id = m.sub_id
-WHERE m.mark = (SELECT max(m.mark) FROM mark m);
+	JOIN mark m
+	ON s.sub_id = m.sub_id
+WHERE m.mark = (SELECT max(m.mark) 
+				FROM mark m);
 
 -- HiỂn thỊ CÁC thông tIn sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
 SELECT 	s.student_id,

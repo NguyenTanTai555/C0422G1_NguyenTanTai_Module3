@@ -78,7 +78,7 @@ FROM customer c
 	ON c.c_id = o.c_id 
 	JOIN order_detail od 
 	ON o.o_id = od.o_id 
-	JOIN product p on od.p_id = p.p_id ; 
+	JOIN product p ON od.p_id = p.p_id ; 
 
 -- Hiển thị khách hàng không mua hàng .
 SELECT 	c.c_id ,
@@ -86,14 +86,14 @@ SELECT 	c.c_id ,
 FROM customer c 
 	LEFT JOIN `order`o 
 	ON c.c_id = o.c_id 
-WHERE o.c_id is null ;
+WHERE o.c_id IS NULL ;
 
 -- Hiển thị mã hóa đơn, ngày bán và giá tiền của từng hóa đơn  
 SELECT 	o.o_id ,
 		o.o_date , 
-		sum(od.od_qty*p.p_price) as total_price
+		sum(od.od_qty*p.p_price) AS total_price
 FROM `order`o
-	JOIN order_detail od on o.o_id = od.o_id 
-	JOIN product p on od.p_id = p.p_id 
+	JOIN order_detail od ON o.o_id = od.o_id 
+	JOIN product p ON od.p_id = p.p_id 
 GROUP BY o.o_id;
 
