@@ -22,8 +22,8 @@ WHERE lk.ten_loai_khach like 'Diamond'
 -- task 12 :
 SELECT 
     hd.ma_hop_dong,
-    nv.ho_ten,
-    kh.ho_ten,
+    nv.ho_ten as ho_ten_nhan_vien,
+    kh.ho_ten as ho_ten_khach_hang,
     kh.so_dien_thoai,
     dv.ten_dich_vu,
     SUM(hdct.so_luong) AS so_luong_dich_vu_di_kem,
@@ -38,8 +38,6 @@ FROM
     dich_vu dv ON hd.ma_dich_vu = dv.ma_dich_vu
         left join
     hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
-		left join
-    dich_vu_di_kem dvdk ON hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
 WHERE
     (MONTH(hd.ngay_lam_hop_dong) in (10,11,12))
         AND hd.ngay_lam_hop_dong NOT IN (SELECT 
@@ -47,7 +45,7 @@ WHERE
         FROM
             hop_dong hd
         WHERE
-            (hd.ngay_lam_hop_dong BETWEEN '2021-01-01' AND '2021-06-30'))
+            MONTH(hd.ngay_lam_hop_dong) BETWEEN 1 AND 6)
             group by ma_hop_dong;
             
 -- task 13 :Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
@@ -95,6 +93,7 @@ JOIN bo_phan bp
 on nv.ma_bo_phan = bp.ma_bo_phan
 JOIN hop_dong hd
 on hd.ma_nhan_vien = nv.ma_nhan_vien
+WHERE YEAR(hd.ngay_lam_hop_dong) between 2020 and 2021
 group by nv.ma_nhan_vien
 having count(hd.ma_nhan_vien) <= 3
 order by nv.ma_nhan_vien
