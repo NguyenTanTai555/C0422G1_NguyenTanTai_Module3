@@ -12,12 +12,8 @@ JOIN hop_dong_chi_tiet hdct
 ON hd.ma_hop_dong = hdct.ma_hop_dong
 JOIN dich_vu_di_kem dvdk
 ON dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
-JOIN loai_khach lk
-ON lk.ma_loai_khach = kh.ma_loai_khach
-JOIN dich_vu dv
-ON hd.ma_dich_vu = dv.ma_dich_vu
-WHERE lk.ten_loai_khach like 'Diamond'
-		and kh.dia_chi like '% Vinh' or kh.dia_chi like '% Quảng Ngãi';
+WHERE kh.ma_loai_khach = 1
+		and kh.dia_chi  like '% Vinh' or kh.dia_chi like '% Quảng Ngãi';
         
 -- task 12 :
 SELECT 

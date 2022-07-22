@@ -80,7 +80,7 @@ SELECT 	ma_nhan_vien ,
         ngay_sinh,
         dia_chi
 FROM nhan_vien
-UNION
+UNION ALL
 SELECT
 		ma_khach_hang,
         ho_ten,

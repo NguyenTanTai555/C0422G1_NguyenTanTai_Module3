@@ -41,3 +41,29 @@ call sp_xoa_khach_hang(2);
 -- 24.	Tạo Stored Procedure sp_them_moi_hop_dong dùng để thêm mới vào bảng hop_dong với yêu cầu sp_them_moi_hop_dong 
 -- phải thực hiện kiểm tra tính hợp lệ của dữ liệu bổ sung, 
 -- với nguyên tắc không được trùng khóa chính và đảm bảo toàn vẹn tham chiếu đến các bảng liên quan.
+delimiter $$
+CREATE PROCEDURE sp_them_moi_hop_dong(ngay_lam DATETIME , ngay_ket DATETIME , tien_dat_coc DOUBLE ,ma_nhan_vien int , ma_khach_hang int , ma_dich_vu int )
+BEGIN 
+	SET FOREIGN_KEY_CHECKS = 0 ;
+	IF (EXISTS 
+		(SELECT nv.ma_nhan_vien FROM nhan_vien nv WHERE ma_nhan_vien = nv.ma_nhan_vien)
+	AND 
+        EXISTS(SELECT kh.ma_khach_hang FROM khach_hang kh WHERE ma_khach_hang = kh.ma_khach_hang)
+	AND 
+		EXISTS(SELECT dv.ma_dich_vu FROM dich_vu dv WHERE ma_dich_vu = dv.ma_dich_vu))
+	THEN
+	INSERT INTO hop_dong (ngay_lam_hop_dong,ngay_ket_thuc,tien_dat_coc,ma_nhan_vien,ma_khach_hang,ma_dich_vu)
+    VALUES (ngay_lam ,ngay_ket,tien_dat_coc,ma_nhan_vien,ma_khach_hang,ma_dich_vu);
+    ELSE 
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Khong Them duoc hop dong ';
+    END IF;
+END $$
+delimiter ;
+-- gọi sp thêm hợp đồng:
+call sp_them_moi_hop_dong('2022-07-21' , '2022-07-30','1000000',2,5,1);
+call sp_them_moi_hop_dong('2022-07-11' , '2022-07-15','1000000',2,5,100); -- mã dịch vụ không tồn tại nên không thêm được
+call sp_them_moi_hop_dong('2022-07-11' , '2022-07-15','1000000',2,100,100);-- mdv và mkh ko tồn tại nên ko thêm dc hợp đồng;
+
+-- 25.	Tạo Trigger có tên tr_xoa_hop_dong khi xóa bản ghi trong bảng hop_dong thì 
+-- hiển thị tổng số lượng bản ghi còn lại có trong bảng hop_dong ra giao diện console của database.
