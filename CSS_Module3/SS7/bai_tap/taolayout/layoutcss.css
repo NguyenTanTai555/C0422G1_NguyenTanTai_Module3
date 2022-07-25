@@ -1,0 +1,45 @@
+body {
+    font-family: Arial;
+    font-size: 1em;
+}
+header,footer{
+    padding: 10px;
+    color: white;
+    background-color: black;
+}
+section{
+    margin: 5px;
+    padding: 10px;
+    background-color: lightgrey;
+}
+article{
+    margin: 5px;
+    padding: 10px;
+}
+nav ul{
+    display: flex;
+    list-style-type: none;
+}
+
+li{
+    padding: 10px;
+}
+/*header{*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    position: fixed;*/
+/*    height: auto;*/
+/*    width: 100%;*/
+/*}*/
+/*footer{*/
+/*    position: fixed;*/
+/*    height: auto;*/
+/*    width: 100%;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*}*/
+header h1 , footer p{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+

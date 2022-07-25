@@ -1,0 +1,35 @@
+body{
+    background-image: url("https://img6.thuthuatphanmem.vn/uploads/2022/03/16/background-den-led-dep-spotlight_085304823.jpg");
+    background-size: cover;
+    background-position-y: -100px ;
+}
+.container{
+    max-width: 960px;
+    margin: 0px auto;
+}
+#header{
+    background-color: #131921;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+#main-menu{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#main-menu li{
+    position: relative;
+}
+#main-menu li a {
+    color: #f8f8f8;
+    display: block;
+    padding: 18px 20px;
+    text-decoration: none;
+}
+#main-menu ul li:hover a{
+    visibility: hidden;
+}
