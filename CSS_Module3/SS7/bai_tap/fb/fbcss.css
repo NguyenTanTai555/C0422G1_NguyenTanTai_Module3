@@ -45,14 +45,24 @@
     .col-l-12 {width: 100%;}
 }
 
+.left-cont div{
+    padding: 10px 0px;
+}
+span{
+    left: 50px;
+}
+.container{
+    list-style-type: none;
+}
 input{
   border-radius: 30px;
     padding: 5px;
     margin-left: 0;
 }
 .header{
-    background-color: black;
+    background-color: white;
     position: relative;
+    height: 50px;
 }
 i{
     display: block;
@@ -61,23 +71,34 @@ i{
     text-align: center;
     position: absolute;
 }
-.menu div{
+.text-icon{
+    padding: 15px 0px;
+}
+.between div{
     text-align: center;
     padding: 10px;
 }
-.col1 {
+.left-header {
     display: flex;
     text-align: center;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 0px;
 }
-.footer,.header,.container,.menu{
-    border: 1px solid black;
+.footer,.header,.container,.between,.right-header,.name{
     display: flex;
 }
 .container{
-    height: 600px;
-}
-.header{
-    height: 50px;
+    height: 500px;
 }
 
+
+.right-header div{
+    text-align: center;
+    padding: 10px 0px;
+}
+img {
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    text-align: center;
+    padding: 0px;
+}
