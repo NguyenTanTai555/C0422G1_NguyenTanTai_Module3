@@ -6,18 +6,11 @@ body{
     height: 100%;
     margin: 0;
 }
-img{
-    border-radius: 50%;
-}
-input{
-    width: 40%;
-    border-radius: 20%;
-}
-
 .row{
     display: flex;
     flex-wrap: wrap;
 }
+
 
 /*màn hình điện thoại*/
 @media only screen and (max-width:740px ){
