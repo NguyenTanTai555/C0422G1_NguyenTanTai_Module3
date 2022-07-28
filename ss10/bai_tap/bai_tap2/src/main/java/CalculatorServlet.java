@@ -1,16 +1,19 @@
-import model.Calculator;
+import service.Calculator;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "CalculatorServlet", value = "")
+@WebServlet(name = "CalculatorServlet", value = "/calculator")
 public class CalculatorServlet extends HttpServlet {
-    private Calculator calculate = new Calculator();
+    private Calculator calculator = new Calculator();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/calculator.jsp");
         requestDispatcher.forward(request,response);
     }
 
@@ -22,12 +25,12 @@ public class CalculatorServlet extends HttpServlet {
         double result = 0;
         String error = null;
         try {
-            result = calculate.calculate(firstOperand, secondOperand, operator);
-        }catch (ArithmeticException m){
-            error = m.getMessage();
+            result = calculator.calculate(firstOperand, secondOperand, operator);
+        }catch (ArithmeticException a){
+            error = a.getMessage();
         }
         request.setCharacterEncoding("UTF-8");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/calculator.jsp");
         if (error != null) {
             request.setAttribute("error", error);
         }else {
