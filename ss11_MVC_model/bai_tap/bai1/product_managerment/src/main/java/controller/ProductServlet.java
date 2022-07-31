@@ -114,7 +114,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/create.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/add.jsp");
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
