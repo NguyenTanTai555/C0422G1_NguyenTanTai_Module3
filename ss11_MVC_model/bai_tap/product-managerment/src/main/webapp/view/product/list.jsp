@@ -10,9 +10,11 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-
+<div>
+    <fieldset>
 <form method="get" action="/product">
     <tr>
         <td><input type="text" name="name" placeholder="Enter name your want search"></td>
@@ -22,7 +24,7 @@
         <td><input type="text" name="id" placeholder="Enter id your want search"></td>
         <td><button type="submit" name="action" value="search">search by id</button></td>
     </tr>
-    <table border="1px solid black">
+    <table border="1px solid black bg-light">
         <tr>
             <th>Product Id</th>
             <th>Product Name</th>
@@ -50,5 +52,7 @@
         </td>
     </tr>
 </form>
+    </fieldset>
+</div>
 </body>
 </html>

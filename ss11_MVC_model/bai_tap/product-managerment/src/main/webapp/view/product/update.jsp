@@ -13,10 +13,10 @@
 <body>
 <h1>Edit Product</h1>
 <form action="/product" method="post">
-    <input type="text" name="name" value="${product.name}">
-    <input type="number" name="price" value="${product.price}">
-    <input type="text" name="describe" value="${product.describe}">
-    <input type="text" name="producer"value="${product.producer}">
+    <label>Name :</label><input type="text" name="name" value="${product.name}">
+    <label>price :</label><input type="number" name="price" value="${product.price}">
+    <label>describe :</label><input type="text" name="describe" value="${product.describe}">
+    <label>Producer :</label><input type="text" name="producer"value="${product.producer}">
     <button type="submit" name="action" value="create">Update</button>
 </form>
 </body>
