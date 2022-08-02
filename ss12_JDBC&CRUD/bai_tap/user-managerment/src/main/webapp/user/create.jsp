@@ -23,6 +23,12 @@
                 <h2>Add New User</h2>
             </caption>
             <tr>
+                <th>ID:</th>
+                <td>
+                    <input type="text" name="name" id="id" size="45" class="hidden"/>
+                </td>
+            </tr>
+            <tr>
                 <th>User Name:</th>
                 <td>
                     <input type="text" name="name" id="name" size="45"/>
