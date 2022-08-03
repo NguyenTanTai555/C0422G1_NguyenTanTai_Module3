@@ -4,7 +4,7 @@ import model.Product;
 
 import java.util.List;
 
-public interface IRepositoryProduct {
+public interface IProductRepository {
     List<Product> findAll();
     void save(Product product);
     void update(int id,Product product);

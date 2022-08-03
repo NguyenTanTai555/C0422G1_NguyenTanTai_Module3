@@ -1,11 +1,11 @@
 package repository.impl;
 
 import model.Product;
-import repository.IRepositoryProduct;
+import repository.IProductRepository;
 
 import java.util.*;
 
-public class RepositoryProduct implements IRepositoryProduct {
+public class ProductRepository implements IProductRepository {
     private static Map<Integer,Product> productMap = new HashMap<>();
     private static final String IMAGE_SAIGON="webapp/image/saigonbeer.jpg";
     private static final String IMAGE_LARUE="webapp/image/laruebeer.jpg";

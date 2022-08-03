@@ -1,14 +1,14 @@
 package service.impl;
 
 import model.Product;
-import repository.IRepositoryProduct;
-import repository.impl.RepositoryProduct;
+import repository.IProductRepository;
+import repository.impl.ProductRepository;
 import service.IProductService;
 
 import java.util.List;
 
 public class ProductService implements IProductService {
-    private IRepositoryProduct repositoryProduct = new RepositoryProduct();
+    private IProductRepository repositoryProduct = new ProductRepository();
     @Override
     public List<Product> findAll() {
         return repositoryProduct.findAll();
