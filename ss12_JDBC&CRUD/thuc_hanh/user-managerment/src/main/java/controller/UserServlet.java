@@ -39,12 +39,14 @@ public class UserServlet extends HttpServlet {
                 case "sort":
                     sortByName(request, response);
                     break;
+                case "permision":
+                    addUserPermision(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
             }
     }
-
 
 
     @Override
@@ -109,9 +111,9 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        User book = new User( name, email, country);
+        User user = new User( name, email, country);
         try {
-            userService.insertUser(book);
+            userService.insertUserStore(user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("user/create.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException | ServletException | IOException e) {
@@ -162,7 +164,7 @@ public class UserServlet extends HttpServlet {
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userService.selectUser(id);
+        User existingUser = userService.getUserById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/edit.jsp");
         request.setAttribute("user", existingUser);
         try {
@@ -179,5 +181,10 @@ public class UserServlet extends HttpServlet {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
+    }
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+        int[] permision = {1, 2, 4};
+        userService.addUserTransaction(user, permision);
     }
 }

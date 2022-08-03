@@ -13,5 +13,8 @@ public interface IUserRepository {
     boolean updateUser(User user) throws SQLException;
     List<User> findCountry(String country);
     List<User> sortByNameUser();
+    User getUserById(int id);
+    void insertUserStore(User user) throws SQLException;
+    void addUserTransaction(User user, int[] permisions);
 }
 

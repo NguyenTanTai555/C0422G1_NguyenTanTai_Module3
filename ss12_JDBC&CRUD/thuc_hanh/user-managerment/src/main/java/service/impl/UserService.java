@@ -44,4 +44,19 @@ public class UserService implements IUserService {
     public List<User> sortByNameUser() {
         return userService.sortByNameUser();
     }
+
+    @Override
+    public User getUserById(int id) {
+        return userService.getUserById(id);
+    }
+
+    @Override
+    public void insertUserStore(User user) throws SQLException {
+        userService.insertUserStore(user);
+    }
+
+    @Override
+    public void addUserTransaction(User user, int[] permisions) {
+        userService.addUserTransaction(user,permisions);
+    }
 }
