@@ -65,7 +65,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">Contact</a>
+                            <a class="nav-link" href="/view/contract/list.jsp">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex justify-content-between">
