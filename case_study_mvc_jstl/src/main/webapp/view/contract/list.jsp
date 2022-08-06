@@ -17,9 +17,9 @@
 </head>
 <body class="bg-warning bg-opacity-50">
 <%@include file="../include/header.jsp"%>
-<div class="container text-center  text-white pd-5">
+<div class="container text-center  text-dark pd-5">
     <h2>LIST CONTRACT</h2>
-    <table class="table">
+    <table class="table table-dark ">
         <tr class="bg-info bg-dark text-white">
             <th>Id</th>
             <th>Facility</th>
