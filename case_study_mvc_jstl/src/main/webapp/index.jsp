@@ -37,7 +37,7 @@
     <%--    navbar--%>
         <nav class="navbar navbar-expand-md navbar-black-oc ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Home</a>
+                <a class="navbar-brand" href="index.jsp">Home</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +46,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Employee</a>
+                            <a class="nav-link active" aria-current="page" href="view/employee/list.jsp">Employee</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Customer</a>
+                            <a class="nav-link" href="view/customer/list.jsp">Customer</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -58,14 +58,14 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="http://localhost:8080/view/list.jsp">List</a></li>
-                                <li><a class="dropdown-item" href="#">Ser`vice</a></li>
+                                <li><a class="dropdown-item" href="#">Service</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Contact</a>
+                            <a class="nav-link" href="">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex justify-content-between">
@@ -113,10 +113,129 @@
             </div>
 <%--            right conten--%>
             <div class="col-md-9 p2">
-                <img src="/image/nen.jpg" width="800px" height="700px">
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="/image/meting.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="/image/RECREATION.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/image/nhau.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
+        <div class="container my-5">
+
+            <footer class="bg-dark text-center text-lg-start text-white">
+                <!-- Grid container -->
+                <div class="container p-4">
+                    <!--Grid row-->
+                    <div class="row mt-4">
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">See other books</h5>
+
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>Bestsellers</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-white"><i class="fas fa-book fa-fw fa-sm me-2"></i>All books</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-white"><i class="fas fa-user-edit fa-fw fa-sm me-2"></i>Our authors</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Execution of the contract</h5>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Supply</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-backspace fa-fw fa-sm me-2"></i>Returns</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Regulations</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Privacy policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Publishing house</h5>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!" class="text-white">The BookStore</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">123 Street</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white">05765 NY</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-briefcase fa-fw fa-sm me-2"></i>Send us a book</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                            <h5 class="text-uppercase">Write to us</h5>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-at fa-fw fa-sm me-2"></i>Help in purchasing</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Check the order status</a>
+                                </li>
+                                <li>
+                                    <a href="#!" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Join the newsletter</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </div>
+                <!-- Grid container -->
+
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                    © 2021 Copyright:
+                    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+                </div>
+                <!-- Copyright -->
+            </footer>
+
+        </div>
+        <!-- End of .container -->
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"

@@ -16,78 +16,7 @@
 <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 <body class="bg-warning bg-opacity-50">
-<div class="container-fluid" action="/view/list.jsp">
-    <%--    header--%>
-    <div class="row bg-dark bg-opacity-75 p-3 " style="height: 15%">
-        <div class="col-md-3 justify-content-start pt-10 ">
-            <img src="/image/logo.png" style="height: 60px; width: 40px">
-            <a class="text-white text-opacity-75" href="#" style="text-decoration: none">Furama Resort</a>
-        </div>
-        <div class="text-sm-start font-weight-normal col-md-3">
-            <div class="h6 m-0 text-black">
-                <a href="#" class="text-white text-opacity-75" style="text-decoration: none">103 – 105 Đường Võ Nguyên
-                    Giáp, Phường Khuê Mỹ, Quận Ngũ hành Sơn, Tp. Đà Nẵng, Việt Nam</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <ul class="m-0" style="list-style-type: none ;">
-                <li style="padding-top: 5px"><a href="#" class="text-white text-opacity-75"
-                                                style="text-decoration: none">84-236-3847 333/888</a></li>
-                <li style="padding-bottom: 5px"><a href="#" class="text-white text-opacity-75"
-                                                   style="text-decoration: none">reservation@furamavietnam.com</a></li>
-            </ul>
-        </div>
-
-        <div class="col-md-3 text-end text-white"><a href="#" class=" p-2 text-white text-opacity-75"
-                                                     style="text-decoration: none">Nguyễn Tấn Tài</a></div>
-    </div>
-    <%--    navbar--%>
-    <nav class="navbar navbar-expand-md navbar-black-oc ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Employee</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Customer</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Service
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">List</a></li>
-                            <li><a class="dropdown-item" href="#">Service</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">Contact</a>
-                    </li>
-                </ul>
-                <form class="d-flex justify-content-between">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-    <div>
-        <a href="/index.jsp"><span class="material-symbols-outlined">Back Home</span></a>
-    </div>
-    <div>
-        <a href="/view/create.jsp"><span class="material-symbols-outlined">List Facility</span></a>
-    </div>
+<%@include file="include/header.jsp"%>
     <%--        form edit--%>
     <div class="container w-50 mt-2 p-2 bg-dark text-white" style="border: 1px solid white; border-radius: 15px">
         <h3 class="text-center text-white">SỬA THÔNG TIN DỊCH VỤ</h3>
@@ -154,7 +83,7 @@
         </form>
     </div>
 
-
+<%@include file="include/footer.jsp"%>
     <script>
         function showServiceInput(value) {
             var v = value.value;
@@ -190,13 +119,7 @@
             }
         }
     </script>
-
-    <%--footer--%>
-    <div class="row container bg-dark">
-        <div class="col-md-12 text-white text-center">
-            <h2>Footer</h2>
-        </div>
-    </div>
+        <%@include file="include/footer.jsp"%>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
