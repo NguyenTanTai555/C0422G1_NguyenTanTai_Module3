@@ -46,10 +46,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="view/employee/list.jsp">Employee</a>
+                            <a class="nav-link active" aria-current="page" href="/furama?action=list_employee">Employee</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="view/customer/list.jsp">Customer</a>
+                            <a class="nav-link" href="/furama?action=list_customer">Customer</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"

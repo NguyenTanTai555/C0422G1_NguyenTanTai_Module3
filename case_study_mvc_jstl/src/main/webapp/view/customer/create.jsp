@@ -19,14 +19,24 @@
 <%@include file="../include/header.jsp"%>
 <div class="container w-50 mt-2 p-2 bg-dark text-white" style="border: 1px solid white; border-radius: 15px">
     <h3 class="text-center text-white">ADD NEW CUSTOMER</h3>
-    <form class="row g-3" action="" method="post">
+    <form class="row g-3" action="/furama?action=insert_customer" method="post">
+        <div class="col-md-12">
+            <label for="id" class="form-label">Customer ID</label>
+            <input type="text" class="form-control" id="id" name="id">
+        </div>
+        <div class="col-md-12">
+            <label for="inputTypeId" class="form-label">Customer Type id</label>
+            <input type="text" class="form-control" id="inputTypeId" name="typeId">
+        </div>
         <div class="col-md-12">
             <label for="name" class="form-label">Customer name</label>
             <input type="text" class="form-control" id="name" name="name">
         </div>
         <div class="col-md-12">
-            <label for="birthday" class="form-label">Birthday</label>
-            <input type="text" class="form-control" id="birthday" name="birthday">
+            <label for="staticDate" class="form-label">Birthday</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="staticDate" name="dateOfBirth">
+            </div>
         </div>
         <div class="col-md-12">
             <label for="gender" class="form-label">Gender</label>
@@ -38,38 +48,27 @@
         </div>
         <div class="col-md-12">
             <label for="phoneNumber" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" >
         </div>
         <div class="col-md-12 " id="s1">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" name="email">
         </div>
-
-        <div class="col-md-12 " id="s2" style="display: none">
-            <label for="customerTypeId" class="form-label">Customer Type ID</label>
-            <input type="text" class="form-control" id="customerTypeId"
-                   name="customerType">
-        </div>
-
-        <div class="col-md-12 " id="s3" style="display: none">
+        <div class="col-md-12 " id="s3" >
             <label for="address" class="form-label">Address </label>
             <input type="text" class="form-control" id="address" name="address">
         </div>
-
-        <div class="col-md-12">
-            <label class="form-label">Customer Type</label>
-            <select name=""  class="form-select" >
-                <option value="Villa" >Diamond</option>
-                <option value="House" >Platinium</option>
-                <option value="Room" >Gold</option>
-                <option value="Room" >Silver</option>
-                <option value="Room" >Gold</option>
-            </select>
-        </div>
         <div class="col-12 ">
-            <button type="submit" class="btn btn-primary">Gửi</button>
+            <button class="btn btn-danger" type="button" onclick="location.href='/furama?action=list_customer'">Cancel</button>
+            <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>
+    <c:if test="${message != null}">
+        <div class="col-md-5 bg-light mt-5 p-3 text-center" style="margin: auto">
+            <h1>${message}</h1>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href='/furama?action=list_customer'">Back</button>
+        </div>
+    </c:if>
 </div>
 <%@include file="../include/footer.jsp"%>
 </body>

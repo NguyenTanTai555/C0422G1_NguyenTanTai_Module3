@@ -55,7 +55,7 @@
                            href="/view/employee/list.jsp">Employee</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/view/customer/list.jsp">Customer</a>
+                        <a class="nav-link" href="/furama?action=list_customer">Customer</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"

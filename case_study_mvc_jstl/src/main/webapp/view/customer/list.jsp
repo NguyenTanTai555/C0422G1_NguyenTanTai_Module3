@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -19,47 +20,45 @@
 <%@include file="../include/header.jsp" %>
 <div class="col-md-12 p2 container-fluid">
     <div class="container-fluid col-md-12 text-center">
-        <h1>List Customer</h1>
+        <h1>Customer List</h1>
     </div>
     <table class="table table-dark table-striped">
         <thead class="text-center text-white text-opacity-25">
         <tr>
-            <th scope="col">#</th>
+<%--            <th scope="col">#</th>--%>
+            <th scope="col">Type Id</th>
             <th scope="col">Name</th>
             <th scope="col">Birthday</th>
             <th scope="col">Gender</th>
             <th scope="col">ID Card</th>
             <th scope="col">Phone </th>
             <th scope="col">Email</th>
-            <th scope="col">Customer Type Id</th>
             <th scope="col">Address</th>
             <th scope="col">Customer Type</th>
             <th scope="col">Action
-                <a href="/view/customer/create.jsp"><span class="material-symbols-outlined text-white ">add</span></a>
+                <a href="/furama?action=show_edit_customer"><span class="material-symbols-outlined text-white ">add</span></a>
             </th>
 
         </tr>
-        </thead>
-        <tbody class="text-center text-white text-opacity-25">
-        <tr>
-            <th scope="row">1</th>
-            <td>Nguyên Văn A</td>
-            <td>1993/0707</td>
-            <td>Male</td>
-            <td>201710892</td>
-            <td>0905774661</td>
-            <td>nguyenvanA@gmail.com</td>
-            <td>1</td>
-            <td>44 Nguyễn Tất Thành</td>
-            <td>Diamond</td>
-            <td>
-                <a href="/view/customer/edit.jsp"><span class="material-symbols-outlined">update</span></a>
-                <button type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <c:forEach var="customer" items="${customerList}">
+            <tr>
+                    <td>${customer.id}</td>
+                    <td>${customer.customerTypeId}</td>
+                    <td>${customer.name}</td>
+                    <td>${customer.dateOfBirth}</td>
+                    <td>${customer.gender}</td>
+                    <td>${customer.idCard}</td>
+                    <td>${customer.phoneNumber}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.address}</td>
+                <td>
+                <a href="#"><span class="material-symbols-outlined">update</span></a>
+                <button type="button" class="btn text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <span class="material-symbols-outlined" onclick="setIdToFormDelete('${customer.id}')">delete</span>
                 </button>
-            </td>
-        </tr>
-        </tbody>
+                </td>
+            </tr>
+        </c:forEach>
     </table>
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -82,7 +81,7 @@
 </div>
 <%@include file="../include/footer.jsp"%>
 <script>
-    function setIdToFormDelete(idStudent) {
+    function setIdToFormDelete(idCustomer) {
         document.getElementById("idCustomerInput").value = idCustomer;
     }
 

@@ -19,7 +19,7 @@
 <%@include file="../include/header.jsp"%>
 <div class="container text-center  text-dark pd-5">
     <h2>LIST CONTRACT</h2>
-    <table class="table table-dark ">
+    <table class="table table-dark text-center ">
         <tr class="bg-info bg-dark text-white">
             <th>Id</th>
             <th>Facility</th>
@@ -44,9 +44,9 @@
             <td>1400</td>
             <td>2 xe máy</td>
             <td>
-                <a href="/view/contract/edit.jsp"><span class="material-symbols-outlined">update</span></a>
+                <a href="/view/contract/edit.jsp"><p class="material-symbols-outlined">update</p></a>
                 <button type="button" class="btn text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <span class="material-symbols-outlined">delete</span>
+                    <p class="material-symbols-outlined">delete</p>
                 </button>
             </td>
         </tr>
