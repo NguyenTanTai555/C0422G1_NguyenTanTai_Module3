@@ -34,7 +34,7 @@
 
         <div class="col-md-3 text-end"><span class="text-white text-opacity-75" href="#" style="text-decoration: none">Nguyễn Tấn Tài</span></div>
     </div>
-    <%--    navbar--%>
+
         <nav class="navbar navbar-expand-md navbar-black-oc ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.jsp">Home</a>
@@ -46,26 +46,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/furama?action=list_employee">Employee</a>
+                            <a class="nav-link active" aria-current="page" href="#">Employee</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/furama?action=list_customer">Customer</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Service
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="http://localhost:8080/view/list.jsp">List</a></li>
-                                <li><a class="dropdown-item" href="#">Service</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/facility?action=list_facility">Service</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/view/contract/list.jsp">Contact</a>
+                            <a class="nav-link" href="view/contract/list.jsp">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex justify-content-between">

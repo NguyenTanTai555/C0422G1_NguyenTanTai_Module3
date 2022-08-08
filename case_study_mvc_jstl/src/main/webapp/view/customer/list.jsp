@@ -23,7 +23,6 @@
         <h1>Customer List</h1>
     </div>
     <table class="table table-dark table-striped">
-        <thead class="text-center text-white text-opacity-25">
         <tr>
 <%--            <th scope="col">#</th>--%>
             <th scope="col">Type Id</th>
@@ -36,7 +35,7 @@
             <th scope="col">Address</th>
             <th scope="col">Customer Type</th>
             <th scope="col">Action
-                <a href="/furama?action=show_edit_customer"><span class="material-symbols-outlined text-white ">add</span></a>
+                <a href="/furama?action=create_customer"><span class="material-symbols-outlined text-white ">add</span></a>
             </th>
 
         </tr>
@@ -52,16 +51,20 @@
                     <td>${customer.email}</td>
                     <td>${customer.address}</td>
                 <td>
-                <a href="#"><span class="material-symbols-outlined">update</span></a>
-                <button type="button" class="btn text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <span class="material-symbols-outlined" onclick="setIdToFormDelete('${customer.id}')">delete</span>
-                </button>
+                <a href="/furama?action=show_edit_customer&id=${customer.id}"><span class="material-symbols-outlined">update</span></a>
+                    <button class="btn btn-danger"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            onclick="setIdToFormDelete('${customer.id}')">
+                        Delete
+                    </button>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <!-- Modal -->
+
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="/furama?action=deleteCustomer" method="post">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -69,25 +72,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure delete Customer ???
+                    Are you sure delete Customer ${customer.name}???
+
+                        <input id="deleteId" type="text" name="id">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn text-white "  onclick="submitFormDelete()">Delete</button>
+                    <button type="submit" class="btn btn-danger text-white ">Delete</button>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 <%@include file="../include/footer.jsp"%>
-<script>
-    function setIdToFormDelete(idCustomer) {
-        document.getElementById("idCustomerInput").value = idCustomer;
-    }
 
-    function submitFormDelete() {
-        document.getElementById("formDelete").submit();
-    }
+<script>
+  function setIdToFormDelete(id){
+      document.getElementById("deleteId").value = id;
+  }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"

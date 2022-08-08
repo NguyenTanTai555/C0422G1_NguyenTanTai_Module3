@@ -2,9 +2,7 @@ package service.impl;
 
 import model.customer.Customer;
 import model.employee.Employee;
-import model.facility.House;
-import model.facility.Room;
-import model.facility.Villa;
+import model.facility.Facility;
 import repository.impl.FuramaRepository;
 import service.IFuramaService;
 
@@ -20,6 +18,11 @@ public class FuramaService implements IFuramaService {
     @Override
     public boolean editCustomer(int id, Customer customer) {
         return furamaRepository.editCustomer(id,customer);
+    }
+
+    @Override
+    public Boolean deleteCustomer(int id) {
+        return furamaRepository.deleteCustomer(id);
     }
 
     @Override
@@ -42,18 +45,5 @@ public class FuramaService implements IFuramaService {
         return furamaRepository.addEmployee(employee);
     }
 
-    @Override
-    public boolean addVilla(Villa villa) {
-        return furamaRepository.addVilla(villa);
-    }
 
-    @Override
-    public boolean addHouse(House house) {
-        return false;
-    }
-
-    @Override
-    public boolean addRoom(Room room) {
-        return false;
-    }
 }

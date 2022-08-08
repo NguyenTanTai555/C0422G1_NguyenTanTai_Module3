@@ -2,9 +2,7 @@ package repository.impl;
 
 import model.customer.Customer;
 import model.employee.Employee;
-import model.facility.House;
-import model.facility.Room;
-import model.facility.Villa;
+import model.facility.Facility;
 import repository.IFuramaRepository;
 
 import java.sql.CallableStatement;
@@ -16,7 +14,8 @@ import java.util.List;
 
 public class FuramaRepository implements IFuramaRepository {
     private final String SELECT_CUSTOMER = "CALL findAllCustomer();";
-    private final String SELECT_CUSTOMER_BY_ID = "CALL find_customer_by_id(?);";
+    private final String SELECT_CUSTOMER_BY_ID = "select * from khach_hang where ma_khach_hang = ? ";
+    private final String DELETE_CUSTOMER = "CALL delete_customer(?)";
     private final String ADD_NEW_CUSTOMER = "CALL insert_new_customer(?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private final String EDIT_CUSTOMER = "CALL edit_customer(?, ?, ?, ?, ?, ?, ?, ?, ?);";
     @Override
@@ -63,6 +62,21 @@ public class FuramaRepository implements IFuramaRepository {
             callableStatement.setString(9, customer.getAddress());
             check = callableStatement.executeUpdate();
             return check > 0? true: false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean deleteCustomer(int id) {
+        Connection connection = BaseRepository.getConnectDB();
+        int check ;
+        try {
+            CallableStatement callableStatement = connection.prepareCall(DELETE_CUSTOMER);
+            callableStatement.setInt(1,id);
+            check = callableStatement.executeUpdate();
+            return check>0? true:false;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,18 +141,11 @@ public class FuramaRepository implements IFuramaRepository {
         return false;
     }
 
+
+
     @Override
-    public boolean addVilla(Villa villa) {
+    public boolean addNewFacility(Facility facility) {
         return false;
     }
 
-    @Override
-    public boolean addHouse(House house) {
-        return false;
-    }
-
-    @Override
-    public boolean addRoom(Room room) {
-        return false;
-    }
 }

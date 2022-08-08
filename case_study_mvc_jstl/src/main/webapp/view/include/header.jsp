@@ -52,26 +52,17 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page"
-                           href="/view/employee/list.jsp">Employee</a>
+                           href="#">Employee</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/furama?action=list_customer">Customer</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Service
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/view/list.jsp">List</a></li>
-                            <li><a class="dropdown-item" href="/view/create.jsp">Service</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                        </ul>
-                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/view/contract/list.jsp">Contact</a>
+                        <a class="nav-link" href="/facility?action=list_facility">Service</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
                     </li>
                 </ul>
                 <form class="d-flex justify-content-between">

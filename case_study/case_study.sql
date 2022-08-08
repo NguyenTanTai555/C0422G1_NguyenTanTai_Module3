@@ -219,6 +219,15 @@ VALUES ('1', '2', '4', '5'),
  ('6', '1', '3', '1'),
  ('7', '1', '2', '2'),
  ('8', '12', '2', '2');
+ Select *
+ FRom dich_vu;
  
-
-
+ DELIMITER $$
+ create procedure findAllService()
+ begin
+ Select *
+ From dich_vu;
+ End $$
+ DELIMITER ;
+ 
+call findAllService();
