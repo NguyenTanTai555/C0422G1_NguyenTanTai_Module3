@@ -231,3 +231,37 @@ VALUES ('1', '2', '4', '5'),
  DELIMITER ;
  
 call findAllService();
+
+DELIMITER //
+CREATE PROCEDURE edit_facility(
+					IN id INT,
+                    IN name VARCHAR(45),
+                    IN area INT,
+                    IN deposit DOUBLE,
+                    IN max_people INT,
+					IN rent_type INT,
+					IN facility_type INT,
+                    IN standard_room VARCHAR(45),
+                    IN description VARCHAR(45),
+                    IN pool_area DOUBLE,
+                    IN number_floor INT,
+                    IN facility_free VARCHAR(45))
+BEGIN
+SET sql_safe_updates = 0;
+UPDATE dich_vu
+	set 
+		ten_dich_vu = name,
+        dien_tich = area,
+        chi_phi_thue = deposit,
+        so_nguoi_toi_da = max_people,
+        ma_kieu_thue = rent_type,
+        ma_loai_dich_vu = facility_type,
+        tieu_chuan_phong = standard_room,
+        mo_ta_ten_tien_nghi_khac = description,
+        dien_tich_ho_boi = pool_area,
+        so_tang = number_floor,
+        dich_vu_mien_phi_di_kem = facility_free
+WHERE ma_dich_vu = id;
+SET sql_safe_updates = 1;
+END //                    
+DELIMITER ;

@@ -5,9 +5,10 @@ import model.facility.RentType;
 import model.facility.ServiceType;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IFacilityService {
-    boolean CreateFacility(Facility facility);
+    Map<String, String> CreateFacility(Facility facility);
     boolean editFacility(Facility facility,int id);
     boolean deleteFacility(int id);
     List<Facility> findAllFacility();

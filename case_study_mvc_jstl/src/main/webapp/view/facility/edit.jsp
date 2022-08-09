@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -19,66 +20,90 @@
 <%@include file="../include/header.jsp"%>
     <%--        form edit--%>
     <div class="container w-50 mt-2 p-2 bg-dark text-white" style="border: 1px solid white; border-radius: 15px">
-        <h3 class="text-center text-white">SỬA THÔNG TIN DỊCH VỤ</h3>
-        <form class="row g-3" action="" method="post">
+        <h3 class="text-center text-white">FACILITY SERVICE FORM</h3>
+        <form class="row g-3" action="/facility?action=editFacility" method="post">
             <div class="col-md-12">
-                <label class="form-label">Loại dịch vụ</label>
-                <select name="" class="form-select" onchange="showServiceInput(this)">
-                    <option value="None">Chọn loại dịch vụ</option>
-                    <option value="Villa">Villa</option>
-                    <option value="House">House</option>
-                    <option value="Room">Room</option>
+                <label class="form-label">Facility Type</label>
+                <select name="create" class="form-select" onchange="showServiceInput(this)" id="serviceSelect">
+                    <option value="None" disabled >Select Facility</option>
+                    <c:forEach items="${facilityType}" var="serviceTypes">
+                        <c:choose>
+                            <c:when test="${serviceTypes.id == fac.facilityType}">
+                                <option value="${serviceTypes.id}" selected>${serviceTypes.name}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${serviceTypes.id}">${serviceTypes.name}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
                 </select>
             </div>
-
             <div class="col-md-12">
-                <label for="name" class="form-label">Tên dịch vụ</label>
-                <input type="text" class="form-control" id="name" name="name">
+                <label for="id" class="form-label">Facility Id</label>
+                <input type="text" class="form-control" id="id" name="id" value="${fac.id}">
             </div>
             <div class="col-md-12">
-                <label for="area" class="form-label">Diện tích sử dụng</label>
-                <input type="text" class="form-control" id="area" name="area">
+                <label for="name" class="form-label">Facility Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="${fac.name}">
             </div>
             <div class="col-md-12">
-                <label for="cost" class="form-label">Chi phí thuê</label>
-                <input type="text" class="form-control" id="cost" name="cost">
+                <label for="area" class="form-label">Area</label>
+                <input type="text" class="form-control" id="area" name="area" value="${fac.area}">
             </div>
             <div class="col-md-12">
-                <label for="inputAddress2" class="form-label">Số lượng người tối đa </label>
-                <input type="text" class="form-control" id="inputAddress2" name="max_people">
+                <label for="cost" class="form-label">Deposit</label>
+                <input type="text" class="form-control" id="cost" name="cost" value="${fac.deposit}">
             </div>
             <div class="col-md-12">
-                <label for="inputCity" class="form-label">Kiểu thuê</label>
-                <input type="text" class="form-control" id="inputCity" name="rent_type_id">
+                <label for="inputAddress2" class="form-label">Max People</label>
+                <input type="text" class="form-control" id="inputAddress2" name="max_people" value="${fac.maxPeople}">
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Rent Type</label>
+                <select name="rent_type_id"  class="form-select">
+                    <option value="None" disabled selected>Chọn kiểu thuê</option>
+                    <c:forEach items="${rentType}" var="rentalTypeList">
+                        <c:choose >
+                            <c:when test="${rentalTypeList.id == fac.rentTypeId}">
+                                <option value="${rentalTypeList.id}"selected >${rentalTypeList.name}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${rentalTypeList.id}">${rentalTypeList.name}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
             </div>
             <div class="col-md-12 " id="s1" style="display: none">
-                <label for="standard_room" class="form-label">Tiêu chuẩn phòng </label>
-                <input type="text" class="form-control" id="standard_room" name="standard_room">
+                <label for="standard_room" class="form-label">Standard Room </label>
+                <input type="text" class="form-control" id="standard_room" name="standard_room" value="${fac.standardRoom}">
             </div>
 
             <div class="col-md-12 " id="s2" style="display: none">
-                <label for="description_other_convenience" class="form-label">Mô tả tiện nghi khác</label>
+                <label for="description_other_convenience" class="form-label">Description</label>
                 <input type="text" class="form-control" id="description_other_convenience"
-                       name="description_other_convenience">
+                       name="description_other_convenience" value="${fac.description}">
             </div>
 
             <div class="col-md-12 " id="s3" style="display: none">
-                <label for="pool_area" class="form-label">Diện tích hồ bơi </label>
-                <input type="text" class="form-control" id="pool_area" name="pool_area">
+                <label for="pool_area" class="form-label">Pool Area</label>
+                <input type="text" class="form-control" id="pool_area" name="pool_area" value="${fac.poolArea}">
             </div>
 
             <div class="col-md-12" id="s4" style="display: none">
-                <label for="number_of_floors" class="form-label">Số tầng </label>
-                <input type="text" class="form-control" id="number_of_floors" name="number_of_floors">
+                <label for="number_of_floors" class="form-label">Number Of Floor </label>
+                <input type="text" class="form-control" id="number_of_floors" name="number_of_floors"
+                       value="${fac.numberFloor}">
             </div>
 
             <div class="col-md-12 " id="s5" style="display: none">
-                <label for="facility_free" class="form-label">Dịch vụ miễn phí đi kèm </label>
-                <input type="text" class="form-control" id="facility_free" name="facility_free">
+                <label for="facility_free" class="form-label">Facility Free</label>
+                <input type="text" class="form-control" id="facility_free" name="facility_free"
+                value="${fac.facilityFree}">
             </div>
-
             <div class="col-12 ">
-                <button type="submit" class="btn btn-primary">Gửi</button>
+                <button type="button" class="btn btn-danger">Back</button>
+                <button type="submit" class="btn btn-success">Edit</button>
             </div>
         </form>
     </div>
@@ -95,21 +120,21 @@
                     document.getElementById("s4").style.display = "none";
                     document.getElementById("s5").style.display = "none";
                     break;
-                case "Villa":
+                case "1":
                     document.getElementById("s1").style.display = "block";
                     document.getElementById("s2").style.display = "block";
                     document.getElementById("s3").style.display = "block";
                     document.getElementById("s4").style.display = "block";
                     document.getElementById("s5").style.display = "none";
                     break;
-                case "House":
+                case "2":
                     document.getElementById("s1").style.display = "block";
                     document.getElementById("s2").style.display = "block";
                     document.getElementById("s4").style.display = "block";
                     document.getElementById("s5").style.display = "none";
                     document.getElementById("s3").style.display = "none";
                     break;
-                case "Room":
+                case "3":
                     document.getElementById("s1").style.display = "none";
                     document.getElementById("s2").style.display = "none";
                     document.getElementById("s3").style.display = "none";
@@ -118,7 +143,32 @@
                     break;
             }
         }
+        window.onload=function (){
+            if( document.getElementById("serviceSelect").value =='1'){
+                document.getElementById("s1").style.display="block";
+                document.getElementById("s2").style.display="block";
+                document.getElementById("s3").style.display="block";
+                document.getElementById("s4").style.display="block";
+                document.getElementById("s5").style.display="none";
+            }
+            if( document.getElementById("serviceSelect").value =='2') {
+                document.getElementById("s1").style.display="block";
+                document.getElementById("s2").style.display="block";
+                document.getElementById("s4").style.display="block";
+                document.getElementById("s5").style.display="none";
+                document.getElementById("s3").style.display="none";
+            }
+            if( document.getElementById("serviceSelect").value =='3') {
+                document.getElementById("s1").style.display="none";
+                document.getElementById("s2").style.display="none";
+                document.getElementById("s3").style.display="none";
+                document.getElementById("s4").style.display="none";
+                document.getElementById("s5").style.display="block";
+            }
+        }
+
     </script>
+
         <%@include file="../include/footer.jsp"%>
 </div>
 </body>

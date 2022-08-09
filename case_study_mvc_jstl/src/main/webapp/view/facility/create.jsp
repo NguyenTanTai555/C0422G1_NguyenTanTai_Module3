@@ -19,6 +19,9 @@
 <%-- form add--%>
 <div class="container w-50 mt-2 p-2 bg-light" style="border: 1px solid grey; border-radius: 15px">
   <h3 align="center">Add New Facility</h3>
+  <c:if test="${message != null}">
+    <h4>${message}</h4>
+  </c:if>
   <form class="row g-3" action="/facility?action=insert_facility" method="post">
     <div class="col-md-12">
       <label class="form-label">Facility type</label>
