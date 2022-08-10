@@ -1,5 +1,7 @@
 package model.customer;
 
+import java.time.LocalDate;
+
 public class Customer {
     private int id;
     private int customerTypeId;
@@ -10,6 +12,7 @@ public class Customer {
     private String phoneNumber ;
     private String email ;
     private String address;
+
 
     public Customer(int customerTypeId, String name, String dateOfBirth, int gender, String idCard, String phoneNumber, String email, String address) {
         this.customerTypeId = customerTypeId;
@@ -33,6 +36,7 @@ public class Customer {
         this.email = email;
         this.address = address;
     }
+
 
     public int getId() {
         return id;

@@ -21,26 +21,28 @@
     <%--conten--%>
     <div class="col-md-12 p2 container-fluid">
         <div class="container-fluid col-md-12 text-center">
-            <h1>List Service</h1>
+            <h1>Service List</h1>
         </div>
-        <table class="table table-dark table-striped">
-            <thead class="text-center text-white text-opacity-25">
+
+        <div class="d-flex justify-content-end mb-1">
+            <button class="btn-primary" onclick="location.href='/facility?action=createFacility'" >Add New Facility</button>
+        </div>
+        <table class="table text-dark text-center bg-white">
+            <thead class="text-center text-opacity-25">
             <tr>
-                <th scope="col">Ma dich vu</th>
-                <th scope="col">Tên dịch vụ</th>
-                <th scope="col">Diện tích sử dụng</th>
-                <th scope="col">Chi phí thuê</th>
-                <th scope="col">Số lượng người tối đa</th>
-                <th scope="col">Ma Kiểu thuê</th>
-                <th scope="col">Ma loai dich vu</th>
-                <th scope="col">Tiêu chuẩn phòng</th>
-                <th scope="col">Tiện nghi</th>
-                <th scope="col">Diện tích hồ bơi</th>
-                <th scope="col">Số tầng</th>
-                <th scope="col">Dịch vụ miễn phí</th>
-                <th scope="col">Action
-                    <a href="/facility?action=createFacility"><span class="material-symbols-outlined text-white ">add</span></a>
-                </th>
+                <th scope="col">Facility Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Area</th>
+                <th scope="col">Deposit</th>
+                <th scope="col">Max People</th>
+                <th scope="col">Rent Type Id</th>
+                <th scope="col">Facility Type</th>
+                <th scope="col">Standard Room</th>
+                <th scope="col">description</th>
+                <th scope="col">Pool Area</th>
+                <th scope="col">Number Of Floor</th>
+                <th scope="col">Facility Service</th>
+                <th scope="col 2" colspan="2">Action</th>
             </tr>
             <c:forEach var="fac" items="${facilityList}">
                 <tr>
@@ -57,15 +59,15 @@
                     <td>${fac.numberFloor}</td>
                     <td>${fac.facilityFree}</td>
                     <td>
-                        <a href="/facility?action=editFacility&id=${fac.id}"><span class="material-symbols-outlined">Edit</span></a>
+                        <a href="/facility?action=editFacility&id=${fac.id}"><span class="material-symbols-outlined">update</span></a>
                     </td>
                     <td>
                         <button
-                                type="button" class="btn btn-danger"
+                                type="button" class="btn text-danger"
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
                                 onclick="deleteFacility(${fac.id})">
-                            Delete
+                            <span class="material-symbols-outlined">delete</span>
                         </button>
                     </td>
                 </tr>

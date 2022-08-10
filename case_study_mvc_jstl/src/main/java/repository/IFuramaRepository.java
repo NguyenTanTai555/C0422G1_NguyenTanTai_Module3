@@ -1,6 +1,7 @@
 package repository;
 
 import model.customer.Customer;
+import model.customer.CustomerType;
 import model.employee.Employee;
 import model.facility.Facility;
 
@@ -12,7 +13,8 @@ public interface IFuramaRepository {
     Boolean deleteCustomer(int id);
     List<Employee> findAllEmployee();
     Customer findCustomerById(int id);
-    boolean addCustomer(Customer customer);
+    void addCustomer(Customer customer);
     boolean addEmployee(Employee employee);
     boolean addNewFacility(Facility facility);
+    List<CustomerType> findType();
 }

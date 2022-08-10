@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body class="bg-warning bg-opacity-50">
-<div class="container my-5">
+<div class="container-fluid my-5">
 
     <footer class="bg-dark text-center text-lg-start text-white">
         <!-- Grid container -->
@@ -42,16 +42,16 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Supply</a>
+                            <a href="#" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Supply</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-backspace fa-fw fa-sm me-2"></i>Returns</a>
+                            <a href="#" class="text-white"><i class="fas fa-backspace fa-fw fa-sm me-2"></i>Returns</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Regulations</a>
+                            <a href="#" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Regulations</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Privacy policy</a>
+                            <a href="#" class="text-white"><i class="far fa-file-alt fa-fw fa-sm me-2"></i>Privacy policy</a>
                         </li>
                     </ul>
                 </div>
@@ -63,16 +63,16 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="text-white">The BookStore</a>
+                            <a href="#" class="text-white">The BookStore</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">123 Street</a>
+                            <a href="#" class="text-white">123 Street</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white">05765 NY</a>
+                            <a href="#" class="text-white">05765 NY</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-briefcase fa-fw fa-sm me-2"></i>Send us a book</a>
+                            <a href="#" class="text-white"><i class="fas fa-briefcase fa-fw fa-sm me-2"></i>Send us a book</a>
                         </li>
                     </ul>
                 </div>
@@ -84,13 +84,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-at fa-fw fa-sm me-2"></i>Help in purchasing</a>
+                            <a href="#" class="text-white"><i class="fas fa-at fa-fw fa-sm me-2"></i>Help in purchasing</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Check the order status</a>
+                            <a href="#" class="text-white"><i class="fas fa-shipping-fast fa-fw fa-sm me-2"></i>Check the order status</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Join the newsletter</a>
+                            <a href="#" class="text-white"><i class="fas fa-envelope fa-fw fa-sm me-2"></i>Join the newsletter</a>
                         </li>
                     </ul>
                 </div>
@@ -103,7 +103,7 @@
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2021 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            <a class="text-white" href="https://www.facebook.com/Macllele160295/">Nguyễn Tấn Tài</a>
         </div>
         <!-- Copyright -->
     </footer>

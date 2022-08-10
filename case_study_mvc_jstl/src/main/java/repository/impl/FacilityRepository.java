@@ -11,16 +11,15 @@ import java.util.List;
 
 public class FacilityRepository implements IFacilityRepository {
     private final String FIND_FACILITY = "CALL findAllService();";
-    private final String CREATE_FACILITY = "CALL addNewFacility(?,?,?,?,?,?,?,?,?,?,?,?);";
-    private final String DELETE_FACILITY = "CALL deleteFacility(?);";
+    private final String CREATE_FACILITY = "CALL addNewFacility(?,?,?,?,?,?,?,?,?,?,?);";
+    private final String DELETE_FACILITY = "CALL delete_facility(?);";
     private final String EDIT_FACILITY = "CALL edit_facility(?,?,?,?,?,?,?,?,?,?,?,?);";
     private final String SELECT_BY_ID = "SELECT * FROM dich_vu WHERE ma_dich_vu = ?;";
     private final String SELECT_TYPE_FACILITY = "SELECT * FROM loai_dich_vu;";
     private final String SELECT_RENT_TYPE = "SELECT * FROM kieu_thue;";
 
     @Override
-    public void CreateFacility(Facility facility) {
-
+    public void  CreateFacility(Facility facility) {
         Connection connection = BaseRepository.getConnectDB();
         String standardRoom = facility.getStandardRoom();
         String description = facility.getDescription();
@@ -40,18 +39,17 @@ public class FacilityRepository implements IFacilityRepository {
         }
         try {
             CallableStatement callableStatement = connection.prepareCall(CREATE_FACILITY);
-            callableStatement.setInt(1, facility.getId());
-            callableStatement.setString(2, facility.getName());
-            callableStatement.setInt(3, facility.getArea());
-            callableStatement.setDouble(4, facility.getDeposit());
-            callableStatement.setInt(5, facility.getMaxPeople());
-            callableStatement.setInt(6, facility.getRentTypeId());
-            callableStatement.setInt(7, facility.getFacilityType());
-            callableStatement.setString(8, standardRoom);
-            callableStatement.setString(9, description);
-            callableStatement.setDouble(10, poolArea);
-            callableStatement.setInt(11, numberFloor);
-            callableStatement.setString(12, facilityFree);
+            callableStatement.setString(1, facility.getName());
+            callableStatement.setInt(2, facility.getArea());
+            callableStatement.setDouble(3, facility.getDeposit());
+            callableStatement.setInt(4, facility.getMaxPeople());
+            callableStatement.setInt(5, facility.getRentTypeId());
+            callableStatement.setInt(6, facility.getFacilityType());
+            callableStatement.setString(7, standardRoom);
+            callableStatement.setString(8, description);
+            callableStatement.setDouble(9, poolArea);
+            callableStatement.setInt(10, numberFloor);
+            callableStatement.setString(11, facilityFree);
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -59,8 +57,7 @@ public class FacilityRepository implements IFacilityRepository {
     }
 
     @Override
-    public boolean editFacility(Facility facility, int id) {
-        int check;
+    public void editFacility(Facility facility, int id) {
         Connection connection = BaseRepository.getConnectDB();
         String standardRoom = facility.getStandardRoom();
         String description = facility.getDescription();
@@ -92,12 +89,10 @@ public class FacilityRepository implements IFacilityRepository {
             callableStatement.setDouble(10, poolArea);
             callableStatement.setInt(11, numberFloor);
             callableStatement.setString(12, facilityFree);
-            check = callableStatement.executeUpdate();
-            return check > 0? true: false;
+            callableStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     @Override

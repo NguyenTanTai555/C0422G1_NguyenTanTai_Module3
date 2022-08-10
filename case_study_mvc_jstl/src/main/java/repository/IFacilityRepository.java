@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IFacilityRepository {
     void CreateFacility(Facility facility);
-    boolean editFacility(Facility facility,int id);
+    void editFacility(Facility facility,int id);
     boolean deleteFacility(int id);
     List<Facility> findAllFacility();
     List<Facility> findByName();

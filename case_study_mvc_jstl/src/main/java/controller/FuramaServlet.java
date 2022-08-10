@@ -1,6 +1,7 @@
 package controller;
 
 import model.customer.Customer;
+import model.customer.CustomerType;
 import model.facility.Facility;
 import service.IFuramaService;
 import service.impl.FuramaService;
@@ -9,8 +10,11 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "FuramaServlet", value = "/furama")
 public class FuramaServlet extends HttpServlet {
@@ -85,10 +89,12 @@ public class FuramaServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         furamaService.deleteCustomer(id);
         List<Customer> customerList = furamaService.findCustomer();
-        request.setAttribute("customerList",customerList);
+        List<CustomerType> customerTypes = furamaService.findType();
+        request.setAttribute("customerTypeId", customerTypes);
+        request.setAttribute("customerList", customerList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -108,12 +114,15 @@ public class FuramaServlet extends HttpServlet {
         String address = request.getParameter("address");
         Customer customer = new Customer(id, typeId, name, dateOfBirth, gender, idCard, phone, email, address);
         boolean flag = furamaService.editCustomer(id, customer);
-
-        if (flag){
+        if (flag) {
             request.setAttribute("message", "edit success");
-        }else {
+        } else {
             request.setAttribute("message", "edit error");
         }
+        List<Customer> customerList = furamaService.findCustomer();
+        List<CustomerType> customerTypes = furamaService.findType();
+        request.setAttribute("customerType", customerTypes);
+        request.setAttribute("customerList", customerList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -135,22 +144,41 @@ public class FuramaServlet extends HttpServlet {
     }
 
     private void insertCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         String name = request.getParameter("name");
         String dateOfBirth = request.getParameter("dateOfBirth");
         int gender = Integer.parseInt(request.getParameter("gender"));
         String idCard = request.getParameter("idCard");
-        String phone = request.getParameter("phone");
+        String phone = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        Customer customer = new Customer(id, typeId, name, dateOfBirth, gender, idCard, phone, email, address);
-        boolean flag = furamaService.addCustomer(customer);
-        request.setAttribute("message", "insert error");
-        if (flag) {
-            request.setAttribute("message", "insert success");
+        Customer customer = new Customer(typeId, name, dateOfBirth, gender, idCard, phone, email, address);
+        Map<String, String> mapError = this.furamaService.addCustomer(customer);
+        RequestDispatcher dispatcher;
+        if (mapError.size() > 0) {
+            for (Map.Entry<String, String> entry : mapError.entrySet()) {
+                request.setAttribute(entry.getKey(), entry.getValue());
+            }
+//            List<CustomerType> customerTypes = furamaService.findType();
+//            request.setAttribute("customer",customer);
+//            request.setAttribute("customerType", customerTypes);
+//            request.setAttribute("map", mapError);
+//            request.setAttribute("message", "insert error");
+            dispatcher = request.getRequestDispatcher("view/customer/create.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view/customer/create.jsp");
+        List<Customer> list = furamaService.findCustomer();
+        List<CustomerType> customerTypes = furamaService.findType();
+        request.setAttribute("customerList", list);
+        request.setAttribute("customerType", customerTypes);
+        dispatcher = request.getRequestDispatcher("view/customer/list.jsp");
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -158,6 +186,7 @@ public class FuramaServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     //    do get
@@ -196,6 +225,8 @@ public class FuramaServlet extends HttpServlet {
     }
 
     private void showCreateCustomer(HttpServletRequest request, HttpServletResponse response) {
+        List<CustomerType> customerTypes = furamaService.findType();
+        request.setAttribute("customerType", customerTypes);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/create.jsp");
         try {
             requestDispatcher.forward(request, response);
@@ -216,11 +247,14 @@ public class FuramaServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private void showEditCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Customer customer = furamaService.findCustomerById(id);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
+        List<CustomerType> customerTypes = furamaService.findType();
+        request.setAttribute("customerType", customerTypes);
         request.setAttribute("customer", customer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -232,11 +266,20 @@ public class FuramaServlet extends HttpServlet {
 
     private void home(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showListCustomer(HttpServletRequest request, HttpServletResponse response) {
         List<Customer> customerList = furamaService.findCustomer();
+        List<CustomerType> customerTypes = furamaService.findType();
         request.setAttribute("customerList", customerList);
+        request.setAttribute("customerType", customerTypes);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         try {
             requestDispatcher.forward(request, response);

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -17,58 +18,66 @@
 </head>
 <body class="bg-warning bg-opacity-50">
 <%@include file="../include/header.jsp"%>
-<div class="container w-50 mt-2 p-2 bg-dark text-white" style="border: 1px solid white; border-radius: 15px">
+<div class="container w-50 mt-2 p-2 bg-white text-dark" style="border: 1px solid white; border-radius: 15px">
     <h3 class="text-center text-white">ADD NEW CUSTOMER</h3>
+<%--    <c:if test="${message != null}">--%>
+<%--        <h4>${message}</h4>--%>
+<%--    </c:if>--%>
     <form class="row g-3" action="/furama?action=insert_customer" method="post">
         <div class="col-md-12">
-            <label for="id" class="form-label">Customer ID</label>
-            <input type="text" class="form-control" id="id" name="id">
-        </div>
-        <div class="col-md-12">
             <label for="inputTypeId" class="form-label">Customer Type id</label>
-            <input type="text" class="form-control" id="inputTypeId" name="typeId">
+            <select type="text" class="form-select" id="inputTypeId" name="typeId" value="${customer.customerTypeId}">
+                   <c:forEach items="${customerType}" var="customerType">
+                       <option value="${customerType.customerTypeId}" selected>${customerType.customerName}</option>
+                   </c:forEach>
+
+            </select>
         </div>
         <div class="col-md-12">
             <label for="name" class="form-label">Customer name</label>
-            <input type="text" class="form-control" id="name" name="name">
+            <input type="text"  class="form-control" id="name" name="name" value="${customer.name}">
+            <div style="color: red">${regexName}</div>
         </div>
         <div class="col-md-12">
             <label for="staticDate" class="form-label">Birthday</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="staticDate" name="dateOfBirth">
+                <input type="date"  class="form-control" id="staticDate" name="dateOfBirth"
+                       value="${customer.dateOfBirth}" >
             </div>
         </div>
         <div class="col-md-12">
             <label for="gender" class="form-label">Gender</label>
-            <input type="text" class="form-control" id="gender" name="gender">
+            <select type="text" class="form-control" id="gender" name="gender"
+                    value="${customer.gender}">
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
         </div>
         <div class="col-md-12">
             <label for="idCard" class="form-label">Id Card</label>
-            <input type="text" class="form-control" id="idCard" name="idCard">
+            <input type="text"  class="form-control" id="idCard" name="idCard" value="${customer.idCard}" >
+            <div style="color:red">${regexCard}</div>
+
         </div>
         <div class="col-md-12">
             <label for="phoneNumber" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" >
+            <input type="text"  class="form-control" id="phoneNumber" name="phoneNumber" value="${customer.phoneNumber}" >
+            <div style="color:red">${regexPhone}</div>
         </div>
         <div class="col-md-12 " id="s1">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text"  class="form-control" id="email" name="email" value="${customer.email}">
+            <div style="color: red">${regexEmail}</div>
         </div>
         <div class="col-md-12 " id="s3" >
             <label for="address" class="form-label">Address </label>
-            <input type="text" class="form-control" id="address" name="address">
+            <input type="text" required class="form-control" id="address" name="address" value="${customer.address}">
         </div>
         <div class="col-12 ">
             <button class="btn btn-danger" type="button" onclick="location.href='/furama?action=list_customer'">Cancel</button>
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </form>
-    <c:if test="${message != null}">
-        <div class="col-md-5 bg-light mt-5 p-3 text-center" style="margin: auto">
-            <h1>${message}</h1>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="location.href='/furama?action=list_customer'">Back</button>
-        </div>
-    </c:if>
 </div>
 <%@include file="../include/footer.jsp"%>
 </body>

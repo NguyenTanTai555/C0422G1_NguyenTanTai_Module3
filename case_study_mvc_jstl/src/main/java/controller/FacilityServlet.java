@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "FacilityServlet", urlPatterns = {"/facility"} )
+@WebServlet(name = "FacilityServlet", value = "/facility" )
 public class FacilityServlet extends HttpServlet {
     FacilityService facilityService = new FacilityService();
     @Override
@@ -92,7 +92,7 @@ public class FacilityServlet extends HttpServlet {
             action = "";
         }
         switch (action){
-            case "insert_facility":
+            case "insertFacility":
                 createFacility(request,response);
                 break;
             case "editFacility":
@@ -146,7 +146,11 @@ public class FacilityServlet extends HttpServlet {
         facility = new Facility(id, name, area, deposit, maxPeople, typeId, facilityType, standardRoom, description, poolArea, numberFloor,free);
         facilityService.editFacility(facility, id);
         List<Facility> facilityList = facilityService.findAllFacility();
+        List<RentType> rentTypeList = facilityService.getRentalTypeList();
+        List<ServiceType> serviceTypeList = facilityService.getServiceTypeList();
         request.setAttribute("facilityList", facilityList);
+        request.setAttribute("rentTypeList", rentTypeList);
+        request.setAttribute("serviceTypeList", serviceTypeList);
         RequestDispatcher rq = request.getRequestDispatcher("view/facility/list.jsp");
         try {
             rq.forward(request, response);
@@ -159,7 +163,6 @@ public class FacilityServlet extends HttpServlet {
 
     private void createFacility(HttpServletRequest request, HttpServletResponse response) {
         Facility facility;
-        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         int area = Integer.parseInt(request.getParameter("area"));
         double deposit = Double.parseDouble(request.getParameter("cost"));
@@ -183,16 +186,16 @@ public class FacilityServlet extends HttpServlet {
             numberFloor = Integer.parseInt(numberFloor1);
         }
         String free = request.getParameter("facility_free");
-        facility = new Facility(id, name, area, deposit, maxPeople, typeId, facilityType, standardRoom, description, poolArea, numberFloor,free);
+        facility = new Facility(name, area, deposit, maxPeople, typeId, facilityType, standardRoom, description, poolArea, numberFloor,free);
         Map<String, String> map = facilityService.CreateFacility(facility);
         RequestDispatcher rq;
-        if (map.size() == 0){
+        if (map.size() > 0){
+            request.setAttribute("message", map.get("name"));
+            rq = request.getRequestDispatcher("view/facility/create.jsp");
+        }else {
             List<Facility> facilityList = facilityService.findAllFacility();
             request.setAttribute("facilityList", facilityList);
             rq = request.getRequestDispatcher("view/facility/list.jsp");
-        }else {
-            request.setAttribute("message", map.get("name"));
-            rq = request.getRequestDispatcher("view/facility/create.jsp");
         }
         try {
             rq.forward(request, response);

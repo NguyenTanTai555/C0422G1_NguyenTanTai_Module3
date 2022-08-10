@@ -22,45 +22,57 @@
     <div class="container-fluid col-md-12 text-center">
         <h1>Customer List</h1>
     </div>
-    <table class="table table-dark table-striped">
+    <div class="d-flex justify-content-end mb-1">
+        <button class="btn-primary" onclick="location.href='/furama?action=create_customer'" >Add New Customer</button>
+    </div>
+    <table class="table bg-white table-responsive text-dark">
         <tr>
-<%--            <th scope="col">#</th>--%>
-            <th scope="col">Type Id</th>
+            <th scope="col">STT</th>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Type ID</th>
             <th scope="col">Name</th>
-            <th scope="col">Birthday</th>
+            <th scope="col">BirthDay</th>
             <th scope="col">Gender</th>
             <th scope="col">ID Card</th>
-            <th scope="col">Phone </th>
+            <th scope="col">Phone</th>
             <th scope="col">Email</th>
             <th scope="col">Address</th>
-            <th scope="col">Customer Type</th>
-            <th scope="col">Action
-                <a href="/furama?action=create_customer"><span class="material-symbols-outlined text-white ">add</span></a>
-            </th>
+            <th scope="col" colspan="2">Action</th>
 
         </tr>
-        <c:forEach var="customer" items="${customerList}">
+        <c:forEach var="customer" items="${customerList}" varStatus="stt">
             <tr>
+                    <td>${stt.count}</td>
                     <td>${customer.id}</td>
-                    <td>${customer.customerTypeId}</td>
+                <c:forEach var="type" items="${customerType}">
+                    <c:if test="${customer.customerTypeId == type.customerTypeId}">
+                        <td>${type.customerName}</td>
+                    </c:if>
+                </c:forEach>
                     <td>${customer.name}</td>
                     <td>${customer.dateOfBirth}</td>
-                    <td>${customer.gender}</td>
+                    <c:if test="${customer.gender ==1}">
+                        <td>Male</td>
+                    </c:if>
+                    <c:if test="${customer.gender ==0}">
+                        <td>Female</td>
+                    </c:if>
                     <td>${customer.idCard}</td>
                     <td>${customer.phoneNumber}</td>
                     <td>${customer.email}</td>
                     <td>${customer.address}</td>
                 <td>
                 <a href="/furama?action=show_edit_customer&id=${customer.id}"><span class="material-symbols-outlined">update</span></a>
-                    <button class="btn btn-danger"
+                    <button class="btn text-danger"
                             data-bs-toggle="modal"
                             data-bs-target="#deleteModal"
                             onclick="setIdToFormDelete('${customer.id}')">
-                        Delete
+                        <span class="material-symbols-outlined">delete</span>
                     </button>
                 </td>
             </tr>
         </c:forEach>
+
     </table>
 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

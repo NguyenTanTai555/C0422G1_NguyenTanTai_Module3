@@ -1,14 +1,12 @@
 package repository.impl;
 
 import model.customer.Customer;
+import model.customer.CustomerType;
 import model.employee.Employee;
 import model.facility.Facility;
 import repository.IFuramaRepository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +14,9 @@ public class FuramaRepository implements IFuramaRepository {
     private final String SELECT_CUSTOMER = "CALL findAllCustomer();";
     private final String SELECT_CUSTOMER_BY_ID = "select * from khach_hang where ma_khach_hang = ? ";
     private final String DELETE_CUSTOMER = "CALL delete_customer(?)";
-    private final String ADD_NEW_CUSTOMER = "CALL insert_new_customer(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private final String ADD_NEW_CUSTOMER = "CALL insert_new_customer(?, ?, ?, ?, ?, ?, ?, ?);";
     private final String EDIT_CUSTOMER = "CALL edit_customer(?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private final String SELECT_CUSTOMER_TYPE = "SELECT * FROM loai_khach;";
     @Override
     public List<Customer> findCustomer() {
         List<Customer> list = new ArrayList<>();
@@ -46,7 +45,7 @@ public class FuramaRepository implements IFuramaRepository {
     }
 
     @Override
-    public boolean editCustomer(int id, Customer customer) {
+    public boolean editCustomer(int id,Customer customer) {
         Connection connection = BaseRepository.getConnectDB();
         int check;
         try {
@@ -114,26 +113,22 @@ public class FuramaRepository implements IFuramaRepository {
     }
 
     @Override
-    public boolean addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         Connection connection = BaseRepository.getConnectDB();
-        int check;
         try {
             CallableStatement callableStatement = connection.prepareCall(ADD_NEW_CUSTOMER);
-            callableStatement.setInt(1, customer.getId());
-            callableStatement.setInt(2, customer.getCustomerTypeId());
-            callableStatement.setString(3, customer.getName());
-            callableStatement.setString(4, customer.getDateOfBirth());
-            callableStatement.setInt(5, customer.getGender());
-            callableStatement.setString(6, customer.getIdCard());
-            callableStatement.setString(7, customer.getPhoneNumber());
-            callableStatement.setString(8, customer.getEmail());
-            callableStatement.setString(9, customer.getAddress());
-            check = callableStatement.executeUpdate();
-            return check > 0? true: false;
+            callableStatement.setInt(1, customer.getCustomerTypeId());
+            callableStatement.setString(2, customer.getName());
+            callableStatement.setString(3, customer.getDateOfBirth());
+            callableStatement.setInt(4, customer.getGender());
+            callableStatement.setString(5, customer.getIdCard());
+            callableStatement.setString(6, customer.getPhoneNumber());
+            callableStatement.setString(7, customer.getEmail());
+            callableStatement.setString(8, customer.getAddress());
+            callableStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
     @Override
@@ -146,6 +141,26 @@ public class FuramaRepository implements IFuramaRepository {
     @Override
     public boolean addNewFacility(Facility facility) {
         return false;
+    }
+
+    @Override
+    public List<CustomerType> findType() {
+        List<CustomerType> customerTypes = new ArrayList<>();
+        CustomerType customerType ;
+        Connection connection = BaseRepository.getConnectDB();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CUSTOMER_TYPE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int typeId = resultSet.getInt("ma_loai_khach");
+                String nameType = resultSet.getString("ten_loai_khach");
+                customerType = new CustomerType(typeId,nameType);
+                customerTypes.add(customerType);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerTypes;
     }
 
 }

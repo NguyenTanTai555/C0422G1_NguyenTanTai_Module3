@@ -19,10 +19,10 @@
 <%-- form add--%>
 <div class="container w-50 mt-2 p-2 bg-light" style="border: 1px solid grey; border-radius: 15px">
   <h3 align="center">Add New Facility</h3>
-  <c:if test="${message != null}">
-    <h4>${message}</h4>
-  </c:if>
-  <form class="row g-3" action="/facility?action=insert_facility" method="post">
+<%--  <c:if test="${message != null}">--%>
+<%--    <h4>${message}</h4>--%>
+<%--  </c:if>--%>
+  <form class="row g-3" action="/facility?action=insertFacility" method="post">
     <div class="col-md-12">
       <label class="form-label">Facility type</label>
       <select name="create"  class="form-select" onchange="showServiceInput(this)">
@@ -32,58 +32,63 @@
         <option value="3" >Room</option>
       </select>
     </div>
-    <div class="col-md-12">
-      <label for="id" class="form-label">Facility id</label>
-      <input type="text" class="form-control" id="id" name="id">
-    </div>
+<%--    <div class="col-md-12">--%>
+<%--      <label for="id" class="form-label">Facility id</label>--%>
+<%--      <input type="text" class="form-control" id="id" name="id">--%>
+<%--    </div>--%>
     <div class="col-md-12">
       <label for="name" class="form-label">Facility Name</label>
-      <input type="text" class="form-control" id="name" name="name">
+      <input type="text" class="form-control" id="name" name="name" >
     </div>
     <div class="col-md-12">
       <label for="area" class="form-label">Area</label>
-      <input type="text" class="form-control" id="area" name="area">
+      <input type="text"  class="form-control" id="area" name="area">
     </div>
     <div class="col-md-12">
       <label for="cost" class="form-label">Deposit</label>
-      <input type="text" class="form-control" id="cost"  name="cost" >
+      <input type="text"   class="form-control" id="cost"  name="cost" >
     </div>
     <div class="col-md-12">
       <label for="inputAddress2" class="form-label">Max people</label>
-      <input type="text" class="form-control" id="inputAddress2"  name="max_people" >
+      <input type="text"   class="form-control" id="inputAddress2"  name="max_people" >
     </div>
     <div class="col-md-12">
       <label for="inputCity" class="form-label">Rent Type</label>
-      <input type="text" class="form-control" id="inputCity" name="rent_type_id">
+      <select type="text"   class="form-select" id="inputCity" name="rent_type_id">
+            <option value="1">Year</option>
+            <option value="2">Month</option>
+            <option value="3">Day</option>
+            <option value="4">Hour</option>
+      </select>
     </div>
     <div class="col-md-12 " id="s1" style="display: none">
       <label for="standard_room" class="form-label">Standard Room</label>
-      <input type="text" class="form-control" id="standard_room" name="standard_room">
+      <input type="text"  class="form-control" id="standard_room" name="standard_room">
     </div>
 
     <div class="col-md-12 " id="s2" style="display: none">
       <label for="description_other_convenience" class="form-label">Description</label>
-      <input type="text" class="form-control" id="description_other_convenience" name="description_other_convenience">
+      <input type="text"  class="form-control" id="description_other_convenience" name="description_other_convenience">
     </div>
 
     <div class="col-md-12 " id="s3" style="display: none">
       <label for="pool_area" class="form-label">Pool Area</label>
-      <input type="text" class="form-control" id="pool_area" name="pool_area">
+      <input type="text"  class="form-control" id="pool_area" name="pool_area">
     </div>
 
     <div class="col-md-12" id="s4" style="display: none">
       <label for="number_of_floors" class="form-label">Number Floor</label>
-      <input type="text" class="form-control" id="number_of_floors" name="number_of_floors">
+      <input type="text"  class="form-control" id="number_of_floors" name="number_of_floors">
     </div>
 
     <div class="col-md-12 " id="s5" style="display: none">
       <label for="facility_free" class="form-label">Facility Free</label>
-      <input type="text" class="form-control" id="facility_free" name="facility_free">
+      <input type="text"  class="form-control" id="facility_free" name="facility_free">
     </div>
 
     <div class="col-12 ">
-      <button type="button" class="btn btn-danger">Back</button>
-      <button type="submit" class="btn btn-success">Create</button>
+      <button type="button" class="btn btn-danger" onclick="location.href='/facility?action=list_facility'">Cancel</button>
+      <button type="submit" class="btn btn-s uccess">Create</button>
     </div>
   </form>
 </div>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface IFacilityService {
     Map<String, String> CreateFacility(Facility facility);
-    boolean editFacility(Facility facility,int id);
+    Map<String, String> editFacility(Facility facility, int id);
     boolean deleteFacility(int id);
     List<Facility> findAllFacility();
     List<Facility> findByName();

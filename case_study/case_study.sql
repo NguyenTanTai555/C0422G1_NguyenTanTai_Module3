@@ -45,7 +45,7 @@ CREATE TABLE loai_khach (
 );
 
 CREATE TABLE khach_hang (
-    ma_khach_hang INT PRIMARY KEY,
+    ma_khach_hang INT PRIMARY KEY auto_increment,
     ma_loai_khach INT,
     FOREIGN KEY (ma_loai_khach)
 	REFERENCES loai_khach (ma_loai_khach),
@@ -68,7 +68,7 @@ CREATE TABLE kieu_thue (
 );
 
 CREATE TABLE dich_vu (
-    ma_dich_vu INT PRIMARY KEY,
+    ma_dich_vu INT PRIMARY KEY auto_increment ,
     ten_dich_vu VARCHAR(45) NOT NULL,
     dien_tich INT,
     chi_phi_thue DOUBLE NOT NULL,
@@ -230,8 +230,18 @@ VALUES ('1', '2', '4', '5'),
  End $$
  DELIMITER ;
  
-call findAllService();
+-- xóa khách hàng
+DELIMITER $$ 
+CREATE procedure delete_customer(IN id int)
+BEGIN
+SET FOREIGN_KEY_CHECKS=0;
+DELETE FROM khach_hang
+		Where khach_hang.ma_khach_hang = id ;
+SET FOREIGN_KEY_CHECKS=1;
+END $$
+DELIMITER ;
 
+--
 DELIMITER //
 CREATE PROCEDURE edit_facility(
 					IN id INT,
@@ -265,3 +275,123 @@ WHERE ma_dich_vu = id;
 SET sql_safe_updates = 1;
 END //                    
 DELIMITER ;
+
+-- all customer find
+DELIMITER $$
+Create Procedure findAllCustomer()
+Begin
+Select * 
+From khach_hang;
+END $$
+DELIMITER ;
+call findAllCustomer();
+-- thêm customer
+DELIMITER //
+CREATE PROCEDURE insert_new_customer(
+					 IN type_id INT,
+                     IN name VARCHAR(45),
+                     IN date_of_birth DATE,
+                     IN gender BIT(1),
+                     IN id_card VARCHAR(45),
+                     IN phone_number VARCHAR(45),
+                     IN email VARCHAR(45),
+                     IN address VARCHAR(45))
+BEGIN
+INSERT INTO khach_hang (ma_loai_khach, ho_ten, ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, email, dia_chi)
+VALUES (type_id, name, date_of_birth, gender, id_card, phone_number, email, address);
+END //                     
+DELIMITER ;
+
+-- sửa
+DELIMITER //
+CREATE PROCEDURE edit_customer(
+					 IN id INT,
+					 IN type_id INT,
+                     IN name VARCHAR(45),
+                     IN date_of_birth DATE,
+                     IN gender BIT(1),
+                     IN id_card VARCHAR(45),
+                     IN phone_number VARCHAR(45),
+                     IN email VARCHAR(45),
+                     IN address VARCHAR(45))
+BEGIN
+UPDATE khach_hang kh
+	SET ma_loai_khach = type_id,
+	    ho_ten = name,
+	    ngay_sinh = date_of_birth,
+		gioi_tinh = gender,
+		so_cmnd = id_card,
+		so_dien_thoai = phone_number,
+		dia_chi = address
+WHERE kh.ma_khach_hang = id AND 
+		ma_loai_khach IN (SELECT lk.ma_loai_khach FROM loai_khach lk);
+END //                     
+DELIMITER ;
+
+
+---
+DELIMITER //
+CREATE PROCEDURE edit_facility(
+					IN id INT,
+                    IN name VARCHAR(45),
+                    IN area INT,
+                    IN deposit DOUBLE,
+                    IN max_people INT,
+					IN rent_type INT,
+					IN facility_type INT,
+                    IN standard_room VARCHAR(45),
+                    IN description VARCHAR(45),
+                    IN pool_area DOUBLE,
+                    IN number_floor INT,
+                    IN facility_free VARCHAR(45))
+BEGIN
+UPDATE dich_vu
+	set 
+		ten_dich_vu = name,
+        dien_tich = area,
+        chi_phi_thue = deposit,
+        so_nguoi_toi_da = max_people,
+        ma_kieu_thue = rent_type,
+        ma_loai_dich_vu = facility_type,
+        tieu_chuan_phong = standard_room,
+        mo_ta_ten_tien_nghi_khac = description,
+        dien_tich_ho_boi = pool_area,
+        so_tang = number_floor,
+        dich_vu_mien_phi_di_kem = facility_free
+WHERE ma_dich_vu = id;
+END //                    
+DELIMITER ;
+
+---
+DELIMITER //
+CREATE PROCEDURE delete_facility(
+				IN id INT)
+BEGIN
+SET FOREIGN_KEY_CHECKS=0;
+	DELETE FROM dich_vu 
+	WHERE ma_dich_vu = id;
+SET FOREIGN_KEY_CHECKS=1;
+END //                
+DELIMITER ;
+
+DELIMITER $$ 
+CREATE PROCEDURE addNewFacility(in `name` varchar(55), 
+								dien_tich_moi int,
+                                gia double,
+                                nguoi int,
+                                phong varchar(55),
+                                tien_nghi varchar(55),
+                                ho_boi double,
+                                tang int,
+                                mien_phi varchar(100),
+                                kieu_thue int,
+                                loai_dich_vu int)
+BEGIN
+   INSERT INTO dich_vu ( ten_dich_vu, dien_tich, chi_phi_thue, so_nguoi_toi_da, tieu_chuan_phong, mo_ta_ten_tien_nghi_khac, dien_tich_ho_boi, so_tang, dich_vu_mien_phi_di_kem, ma_kieu_thue, ma_loai_dich_vu)
+   value(`name`,dien_tich_moi,gia,nguoi,phong,tien_nghi,ho_boi,tang,mien_phi,kieu_thue,loai_dich_vu);
+END $$
+DELIMITER ;
+
+
+
+
